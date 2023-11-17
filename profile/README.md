@@ -7,6 +7,8 @@ Please download the application for macOS, Windows or iOS as follow:
 ### Windows
 - Install the beta app from the Microsoft store: https://www.microsoft.com/store/apps/9N399LMTKQLQ
 - Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
+### Linux
+- Soon !
 ### iOS
 - Use Testflight to install the beta app from the App store : https://testflight.apple.com/join/pdIUbw7Y
 ## For administrators
