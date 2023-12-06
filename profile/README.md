@@ -11,6 +11,8 @@ Please download the application for macOS, Windows or iOS as follow:
 - Soon !
 ### iOS
 - Use Testflight to install the beta app from the App store : https://testflight.apple.com/join/pdIUbw7Y
+### Android/ChromeOS
+- Soon !
 ## For administrators
 - Go to the freely available beta of the SaaS service for Enterprises including a demo on a simulated domain : https://beta.edamame.tech
 - From there create your domain, verify it and onboard your users through the Onboarding tab.
