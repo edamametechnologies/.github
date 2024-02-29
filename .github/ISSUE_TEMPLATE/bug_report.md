@@ -15,11 +15,9 @@ assignees: ''
 - [ ] EDAMAME Dashboard
 - [ ] ...
 
-## Describe the bug in a few lines
-...
+## Describe the bug in a few lines
 
-## Expected behavior vs actual behavior
-...
+## Expected vs actual behavior
 
 ## Versions
 
