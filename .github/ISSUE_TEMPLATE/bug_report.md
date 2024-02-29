@@ -19,7 +19,7 @@ assignees: ''
 
 ## Expected vs actual behavior
 
-## Versions
+## Versions
 
 ## Screenshots (if relevant)
 
