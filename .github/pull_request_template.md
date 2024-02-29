@@ -1,7 +1,7 @@
 # Pull request
 
 ## Issue referencing
-closes \#
+closes #
 
 ## Describe your changes
 
