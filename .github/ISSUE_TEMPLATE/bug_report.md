@@ -23,4 +23,4 @@ assignees: ''
 
 ## Screenshots (if relevant)
 
-## Additional informations
+## Additional information
