@@ -9,7 +9,7 @@ assignees: ''
 
 # Bug report
 
-## Impacted system
+## Impacted system
 - [ ] EDAMAME Security (macOS, Windows, Linux)
 - [ ] EDAMAME Security Mobile (iOS, Android)
 - [ ] EDAMAME Dashboard
