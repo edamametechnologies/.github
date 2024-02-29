@@ -2,7 +2,7 @@
 name: Feature request
 about: An issue template to use when defining a new feature or an enhancement.
 title: "[FEATURE REQUEST] ..."
-labels: ''
+labels: enhancement
 assignees: ''
 
 ---
