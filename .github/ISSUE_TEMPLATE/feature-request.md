@@ -14,6 +14,7 @@ assignees: ''
 - [ ] EDAMAME Dashboard user (CISO)
 - [ ] EDAMAME Developer
 - [ ] ...
+  
 _Please remove the other checkboxes and this text (to prevent them appearing as tasks)_
 
 ## Expected behavior
