@@ -14,6 +14,7 @@ assignees: ''
 - [ ] EDAMAME Security Mobile (iOS, Android)
 - [ ] EDAMAME Dashboard
 - [ ] ...
+  
 _Please remove the other checkboxes and this text (to prevent them appearing as tasks)_
 
 ## Describe the bug in a few lines
