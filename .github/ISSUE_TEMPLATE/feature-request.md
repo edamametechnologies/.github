@@ -10,12 +10,11 @@ assignees: ''
 # Feature request
 
 ## Who is this feature for ?
-- [ ] EDAMAME Security user
-- [ ] EDAMAME Dashboard user (CISO)
-- [ ] EDAMAME Developer
-- [ ] ...
+- EDAMAME Security App user
+- EDAMAME Dashboard user (CISO)
+- EDAMAME Developer
   
-_Please remove the other checkboxes and this text (to prevent them appearing as tasks)_
+_Please remove the irrelevant categories._
 
 ## Expected behavior
 We should implement ... to do ...

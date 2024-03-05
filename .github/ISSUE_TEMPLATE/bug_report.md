@@ -10,16 +10,15 @@ assignees: ''
 # Bug report
 
 ## Impacted system
-- [ ] EDAMAME Security (macOS, Windows, Linux)
-- [ ] EDAMAME Security Mobile (iOS, Android)
-- [ ] EDAMAME Dashboard
-- [ ] ...
+- EDAMAME Security App
+- EDAMAME Dashboard
+- EDAMAME integrations
   
-_Please remove the other checkboxes and this text (to prevent them appearing as tasks)_
-
-## Describe the bug in a few lines
+__Please remove the irrelevant categories.__
 
 ## Expected vs actual behavior
+
+## Steps to reproduce
 
 ## Versions
 
