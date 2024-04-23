@@ -10,17 +10,17 @@ EDAMAME Security is our answer to the growing need for comprehensive digital pro
 - Broad Platform Support: Available on macOS, Windows, iOS, and soon on Linux, Android, and Chromebook.
 Please download the application for macOS, Windows or iOS as follow:
 ### macOS
-- Use Testflight to install the beta app from the App store : https://testflight.apple.com/join/F5KAE4Zr
+- Install the app from the Mac App Store: https://apps.apple.com/fr/app/edamame-security/id1636777324
 - Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
 ### Windows
-- Install the app from the Microsoft store: https://www.microsoft.com/store/apps/9N399LMTKQLQ
+- Install the app from the Microsoft Store: https://www.microsoft.com/store/apps/9N399LMTKQLQ
 - Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
-### Linux
-- Soon !
 ### iOS
 - Use Testflight to install the beta app from the App store : https://testflight.apple.com/join/pdIUbw7Y
 ### Android/ChromeOS
 - Install the app from the Google Play Store: https://play.google.com/store/apps/details?id=com.edamametech.edamame
+### Linux
+- Soon !
 ## For administrators: EDAMAME Dashboard
 - Go to the freely available beta of the SaaS service for Enterprises including a demo on a simulated domain : https://dashboard.edamame.tech
 - From there create your domain, verify it and onboard your users through the Onboarding tab.
