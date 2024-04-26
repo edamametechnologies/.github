@@ -10,13 +10,13 @@ EDAMAME Security is our answer to the growing need for comprehensive digital pro
 - Broad Platform Support: Available on macOS, Windows, iOS, and soon on Linux, Android, and Chromebook.
 Please download the application for macOS, Windows or iOS as follow:
 ### macOS
-- Install the app from the Mac App Store: https://apps.apple.com/fr/app/edamame-security/id1636777324
+- Install the app from the Mac App Store: https://apps.apple.com/app/edamame-security/id1636777324
 - Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
 ### Windows
 - Install the app from the Microsoft Store: https://www.microsoft.com/store/apps/9N399LMTKQLQ
 - Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
 ### iOS
-- Install the app from the App Store: https://apps.apple.com/fr/app/edamame-security-mobile/id6448937722
+- Install the app from the App Store: https://apps.apple.com/app/edamame-security-mobile/id6448937722
 ### Android/ChromeOS
 - Install the app from the Google Play Store: https://play.google.com/store/apps/details?id=com.edamametech.edamame
 ### Linux
