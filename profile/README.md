@@ -16,7 +16,7 @@ Please download the application for macOS, Windows or iOS as follow:
 - Install the app from the Microsoft Store: https://www.microsoft.com/store/apps/9N399LMTKQLQ
 - Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
 ### iOS
-- Use Testflight to install the beta app from the App store : https://testflight.apple.com/join/pdIUbw7Y
+- Install the app from the App Store: https://apps.apple.com/fr/app/edamame-security-mobile/id6448937722
 ### Android/ChromeOS
 - Install the app from the Google Play Store: https://play.google.com/store/apps/details?id=com.edamametech.edamame
 ### Linux
