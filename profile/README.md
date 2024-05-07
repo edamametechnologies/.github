@@ -24,6 +24,8 @@ Please download the application for macOS, Windows or iOS as follow:
 ## For administrators: EDAMAME Dashboard
 - Go to the freely available beta of the SaaS service for Enterprises including a demo on a simulated domain : https://dashboard.edamame.tech
 - From there create your domain, verify it and onboard your users through the Onboarding tab.
+## Access Control Integrations
+- Check here how to integrate your own Condition Access system with EDAMAME: https://github.com/edamametechnologies/integrations
 ## Ressources
 - The threat models wiki: https://github.com/edamametechnologies/threatmodels/wiki
 - The Youtube channel: https://www.youtube.com/@edamametech
