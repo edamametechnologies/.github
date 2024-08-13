@@ -26,11 +26,11 @@ Please download the application for macOS, Windows or iOS as follow:
 - From there create your domain, verify it and onboard your users through the Onboarding tab.
 ## For developers: EDAMAME Posture
 When used in the context of managing access to source code, our solution uniquely allows to:
-- Inspect every single device accessing the source Code (and secrets)
-- Enforce security and compliance up to the edge through Conditional Access Control
-- Uplevel security for developers, whatever device they use (corporate-owned, contractor devices…) hand in hand with existing security stacks
-- Expand CI/CD security to the edge, through automated hardening and posture enforcement
-Our CLI tool and github action is ideal to harden and check the security of a CI/CD runner as seen in this Github action: https://github.com/edamametechnologies/edamame_posture_action
+- Inspect and harden every single SDLC device, from edge to Cloud, from employees to contractors
+- Enforce security and compliance through Zero Trust, hand in hand with existing security stacks
+- Uplevel security for developers without undermining their productivity
+
+Our CLI tool (https://github.com/edamametechnologies/edamame_posture_cli) and GitHub action (https://github.com/edamametechnologies/edamame_posture_action) are ideal to harden and check the security of a CI/CD runner or a test machine (Linux, Windows, macOS).
 ## Access Control Integrations
 - Check here how to integrate your own Condition Access system with EDAMAME: https://github.com/edamametechnologies/integrations
 ## Ressources
