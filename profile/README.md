@@ -21,7 +21,7 @@ Please download the application for macOS, Windows or iOS as follow:
 - Install the app from the Google Play Store: https://play.google.com/store/apps/details?id=com.edamametech.edamame
 ### Linux
 - Soon !
-## For administrators: EDAMAME Dashboard
+## For administrators: EDAMAME Hub
 - Go to the freely available beta of the SaaS service for Enterprises including a demo on a simulated domain : https://hub.edamame.tech
 - From there create your domain, verify it and onboard your users through the Onboarding tab.
 ## For developers: EDAMAME Posture
