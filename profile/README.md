@@ -7,7 +7,7 @@ EDAMAME Security is our answer to the growing need for comprehensive digital pro
 - Digital Identity Management: Integration with https://HaveIBeenPwned.com for online identity management.
 - Network Scanning for Everyone: Inspired by 'nmap', we've made network scanning accessible to all.
 - Privacy-First Management Agent: It can hookup to our "no MDM" platform (see https://www.edamame.tech) to deal with any devices including personal or contractor  devices, ensuring privacy and confidentiality.
-- Broad Platform Support: Available on macOS, Windows, iOS, and soon on Linux, Android, and Chromebook.
+- Broad Platform Support: Available on macOS, Windows, iOS, and Android.
 Please download the application for macOS, Windows or iOS as follow:
 ### macOS
 - Install the app from the Mac App Store: https://apps.apple.com/app/edamame-security/id1636777324
