@@ -11,10 +11,11 @@ EDAMAME Security is our answer to the growing need for comprehensive digital pro
 Please download the application for macOS, Windows or iOS as follow:
 ### macOS
 - Install the app from the Mac App Store: https://apps.apple.com/app/edamame-security/id1636777324
-- Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
+- Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases to allow advanced system access and remediations.
 ### Windows
 - Install the app from the Microsoft Store: https://www.microsoft.com/store/apps/9N399LMTKQLQ
-- Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases
+- Also install the open source system helper from here: https://github.com/edamametechnologies/edamame_helper/releases to allow advanced system access and remediations.
+- Finally install npcap, the packet capture library from the Nmap team at: https://npcap.com/#download to unlock the traffic capture feature.
 ### iOS
 - Install the app from the App Store: https://apps.apple.com/app/edamame-security-mobile/id6448937722
 ### Android/ChromeOS
