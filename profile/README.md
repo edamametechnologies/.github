@@ -31,7 +31,7 @@ When used in the context of managing access to source code, our solution uniquel
 - Enforce security and compliance through Zero Trust, hand in hand with existing security stacks
 - Uplevel security for developers without undermining their productivity
 
-Our CLI tool (https://github.com/edamametechnologies/edamame_posture_cli) and GitHub action (https://github.com/edamametechnologies/edamame_posture_action) are ideal to harden and check the security of a CI/CD runner or a test machine (Linux, Windows, macOS).
+Our CLI tool (https://github.com/edamametechnologies/edamame_posture_cli), GitHub action (https://github.com/edamametechnologies/edamame_posture_action) or GitLab action (https://github.com/edamametechnologies/edamame_posture_action_gitlab) are ideal to harden and check the security of a CI/CD runner or a test machine (Linux, Windows, macOS).
 ## Access Control Integrations
 - Check here how to integrate your own Condition Access system with EDAMAME: https://github.com/edamametechnologies/integrations
 ## Ressources
