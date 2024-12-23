@@ -21,7 +21,7 @@ Please download the application for macOS, Windows or iOS as follow:
 ### Android/ChromeOS
 - Install the app from the Google Play Store: https://play.google.com/store/apps/details?id=com.edamametech.edamame
 ### Linux
-- Soon ! In the meantime, download the CLI version here: https://edamame-posture.s3.eu-west-1.amazonaws.com/linux/latest/edamame_posture
+- Soon ! In the meantime, download the CLI version here: https://github.com/edamametechnologies/edamame_posture_cli
 ## For administrators: EDAMAME Hub
 - Go to the freely available beta of the SaaS service for Enterprises including a demo on a simulated domain : https://hub.edamame.tech
 - From there create your domain, verify it and onboard your users through the Onboarding tab.
