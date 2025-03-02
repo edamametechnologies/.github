@@ -15,15 +15,16 @@ EDAMAME Security is the Flutter-based GUI for our Rust-based security core. Here
 - **Certified Compliance Report Generation:** Contractors required to prove their device meets baseline security requirements (SOC2 or ISO27001) can generate a compliance report with a single click.
 - **Privacy-First Management:** Connects to our "no MDM" platform ([edamame.tech](https://www.edamame.tech)), enabling continuous reporting of security posture and integration with access control to implement Zero Trust for code, secrets, and test data access.
 
-<video width="640" height="360" controls>
-  <source src="https://framerusercontent.com/assets/e6MB2Cpl75cCMFRIgj7alBe1w38.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+
+https://github.com/user-attachments/assets/3ee7a538-0240-4ae7-a715-3a3593445d73
+
+
 
 ## Download the Application
 
 ### macOS
-- Install the full app installer from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.pkg)
+- Install the full app installer from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.pkg).
 - Or install the app from the [Mac App Store](https://apps.apple.com/app/edamame-security/id1636777324) and then install the open-source system helper from [GitHub](https://github.com/edamametechnologies/edamame_helper/releases) to enable advanced system access and remediations.
 
 ### Windows
@@ -63,10 +64,11 @@ Ensure all machines accessing code, secrets, or sensitive test data are secured 
 - Access the free plan of our SaaS service for enterprises, including a demo on a simulated domain: [EDAMAME Hub](https://hub.edamame.tech).
 - Create your domain, verify it, and onboard your users through the Onboarding tab.
 
-<video width="640" height="360" controls>
-  <source src="https://framerusercontent.com/assets/nbhQxouORLdF2zZagyujzbRsHM.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+
+
+https://github.com/user-attachments/assets/335298d0-9e26-4eb3-a388-f1ce6471822d
+
+
 
 ## For Developers: EDAMAME Posture
 Integrate EDAMAME's CLI tools for Windows, macOS or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli)), GitHub Action ([GitHub](https://github.com/edamametechnologies/edamame_posture_action)), or GitLab Action ([GitLab](https://gitlab.com/edamametechnologies/edamame_posture_action)) into your CI/CD.
