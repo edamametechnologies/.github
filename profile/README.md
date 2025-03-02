@@ -4,7 +4,9 @@
 EDAMAME ensures all machines accessing code, secrets, or sensitive test data are secured without the challenges of traditional Unified Endpoint Management. Empower every stakeholder—from contractors to developers—to safeguard the software development lifecycle without slowing down development.
 
 ## For Users: EDAMAME Security
-EDAMAME Security is the Flutter-based GUI version of our Rust-based security core. Here's what it encompasses:
+EDAMAME Security is your all-in-one tool to secure, understand and prove your dev workstation—from OS to network. It delivers compliance audits, network analysis, and vulnerability insights, all while seamlessly integrating with your workflows and OS.
+
+EDAMAME Security is the Flutter-based GUI for our Rust-based security core. Here's what it encompasses:
 
 - **Security Benchmarks:** Utilizes standards such as [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks), SOC2, and ISO27001.
 - **Digital Identity Management:** Integrated with [HaveIBeenPwned.com](https://HaveIBeenPwned.com) for online identity management.
@@ -13,10 +15,15 @@ EDAMAME Security is the Flutter-based GUI version of our Rust-based security cor
 - **Certified Compliance Report Generation:** Contractors required to prove their device meets baseline security requirements (SOC2 or ISO27001) can generate a compliance report with a single click.
 - **Privacy-First Management:** Connects to our "no MDM" platform ([edamame.tech](https://www.edamame.tech)), enabling continuous reporting of security posture and integration with access control to implement Zero Trust for code, secrets, and test data access.
 
+<video width="640" height="360" controls>
+  <source src="https://framerusercontent.com/assets/e6MB2Cpl75cCMFRIgj7alBe1w38.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Download the Application
 
 ### macOS
-- Install the full app installer from EDAMAME: [Download](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.msix)
+- Install the full app installer from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.pkg)
 - Or install the app from the [Mac App Store](https://apps.apple.com/app/edamame-security/id1636777324) and then install the open-source system helper from [GitHub](https://github.com/edamametechnologies/edamame_helper/releases) to enable advanced system access and remediations.
 
 ### Windows
@@ -51,21 +58,31 @@ We provide a GPG-signed APT repository for `.deb` packages, ensuring secure and 
    ```
 
 ## For Administrators: EDAMAME Hub
-- Access the freely available beta of our SaaS service for enterprises, including a demo on a simulated domain: [EDAMAME Hub](https://hub.edamame.tech).
+Ensure all machines accessing code, secrets, or sensitive test data are secured without the challenges of traditional Unified Endpoint Management. Empower every stakeholder—from contractors to developers—to safeguard the software development lifecycle without slowing down development.
+
+- Access the free plan of our SaaS service for enterprises, including a demo on a simulated domain: [EDAMAME Hub](https://hub.edamame.tech).
 - Create your domain, verify it, and onboard your users through the Onboarding tab.
 
+<video width="640" height="360" controls>
+  <source src="https://framerusercontent.com/assets/nbhQxouORLdF2zZagyujzbRsHM.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## For Developers: EDAMAME Posture
-When managing access to source code, our solution uniquely allows you to:
+Integrate EDAMAME's CLI tools for Windows, macOS or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli)), GitHub Action ([GitHub](https://github.com/edamametechnologies/edamame_posture_action)), or GitLab Action ([GitLab](https://gitlab.com/edamametechnologies/edamame_posture_action)) into your CI/CD.
 
-- Inspect and harden every SDLC device—from edge to cloud, employees to contractors.
-- Enforce security and compliance through Zero Trust, complementing existing security stacks.
-- Enhance security for developers without compromising productivity.
+- **Ultra Easy Deployment:** Utilize our self-service portal for effortless setup, and seamlessly integrate with your CI/CD pipeline using our portable CLI tool and GitHub Action. Experience quick and efficient deployment, ensuring your development process is secure and optimized with minimal effort.
 
-Our CLI tool ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli)), GitHub Action ([GitHub](https://github.com/edamametechnologies/edamame_posture_action)), or GitLab Action ([GitLab](https://gitlab.com/edamametechnologies/edamame_posture_action)) are ideal for hardening and checking the security of CI/CD runners or test machines (Linux, Windows, macOS).
+- **Automated Hardening:** This solution automatically hardens your CI/CD runners and dynamically detects and responds to security posture changes throughout the runner lifecycle. Ensure continuous protection and compliance without manual intervention, keeping your development process secure at every stage.
+
+- **Advanced Threat Model:** Not only does it evaluate the security posture of your operating system, but it also performs federated LAN scanning to verify network segmentation and captures traffic for a network audit trailer of the runner communications. This dual-layered approach ensures comprehensive protection, identifying and mitigating vulnerabilities across both your system and network infrastructure.
 
 ## Access Control Integrations
+EDAMAME ensures that only devices running its platform—and meeting stringent security and compliance standards—gain access to vital resources such as code repositories, secrets, and test data. By continuously verifying endpoint security at the OS, network, and configuration levels, it enforces Zero Trust principles, granting entry exclusively to secure, trusted devices.
+
+Thanks to EDAMAME's versatile access control integration engine, it's simple to configure and customize for your unique environment. Compatible with virtually any REST or GraphQL-supporting API, it seamlessly integrates with existing Zero Trust architectures and access control solutions, including Identity Providers, Application Providers, and Network Access Control systems such as firewalls and VPNs.
+
 - Learn how to integrate your Conditional Access system with EDAMAME: [Integrations](https://github.com/edamametechnologies/integrations).
 
 ## Resources
 - [Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)
-- [YouTube Channel](https://www.youtube.com/@edamametech)
