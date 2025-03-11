@@ -24,7 +24,7 @@ https://github.com/user-attachments/assets/3ee7a538-0240-4ae7-a715-3a3593445d73
 ## Download the Application
 
 ### macOS
-- Install the full app installer from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.pkg).
+- Install the full app installer from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/macos/edamame-latest.pkg).
 - Or install the app from the [Mac App Store](https://apps.apple.com/app/edamame-security/id1636777324) and then install the open-source system helper from [GitHub](https://github.com/edamametechnologies/edamame_helper/releases) to enable advanced system access and remediations.
 
 ### Windows
