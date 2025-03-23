@@ -80,11 +80,13 @@ Example GitHub Action for your personal repository:
 ### Download the Application
 
 #### macOS
-- Install from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.pkg) or the [Mac App Store](https://apps.apple.com/app/edamame-security/id1636777324)
+- Install from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.pkg) for an all-in-one intallation or the [Mac App Store](https://apps.apple.com/app/edamame-security/id1636777324) for an Apple vetted sanboxed main app and EDAMAME to install the [EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper/releases) open-source system helper for the required system access
+
 
 #### Windows
-1. Install from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.msix) or the [Microsoft Store](https://www.microsoft.com/store/apps/9N399LMTKQLQ)
-2. Install [npcap](https://npcap.com/#download) to enable traffic capture
+1. Install from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.msix) or the [Microsoft Store](https://www.microsoft.com/store/apps/9N399LMTKQLQ) for a Microsoft vetted sandboxed main app
+2. Install the [EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper/releases) open-source system helper for the required system access
+3. Install [npcap](https://npcap.com/#download) to enable traffic capture
 
 #### Linux
 ```bash
@@ -117,8 +119,9 @@ Enhance your organization's security posture with team-focused capabilities:
 - **Historical Verification:** Verify that code was committed from compliant environments
 - **Tiered Security Controls:** Progress from local checks to domain-managed policies as your security needs mature
 
-- Access the free plan of our SaaS service for enterprises, including a demo on a simulated domain: [EDAMAME Hub](https://hub.edamame.tech).
-- Create your domain, verify it, and onboard your users through the Onboarding tab.
+### Quickstart
+Access the free plan of our SaaS service for enterprises, including a demo on a simulated domain: [EDAMAME Hub](https://hub.edamame.tech).
+Create your domain, verify it, and onboard your users through the Onboarding tab.
 
 https://github.com/user-attachments/assets/335298d0-9e26-4eb3-a388-f1ce6471822d
 
@@ -142,4 +145,3 @@ EDAMAME integrates with your existing security infrastructure:
 
 ## Resources
 - [Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)
-- [EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper/releases) - Open-source system helper for advanced access
