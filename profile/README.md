@@ -18,7 +18,7 @@ EDAMAME Security is your all-in-one tool to secure, understand and prove your de
 
 https://github.com/user-attachments/assets/72fb4115-ac79-4267-b79c-fba2a5dfed9e
 
-See:[EDAMAME Security Public Repo](https://github.com/edamametechnologies/edamame_security)
+See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edamame_security)
 
 ### Security Without Undermining Productivity
 
@@ -118,6 +118,33 @@ EDAMAME integrates with your existing security infrastructure:
 - Works with Identity Providers, Application Providers, and Network Access Control systems
 - Only secure, recognized endpoints can access critical resources
 - Learn more: [Integrations](https://github.com/edamametechnologies/integrations)
+
+## EDAMAME Core (Closed Source)
+
+EDAMAME Core is the central engine that powers both the EDAMAME Security application and the EDAMAME Posture CLI. While closed source, it provides the high‑performance primitives that underpin the platform:
+
+- **Cross‑platform assessment engine**: Consistent posture evaluation across macOS, Windows, and Linux
+- **Threat detection & scoring**: Policy‑driven findings compiled into a unified security score
+- **System configuration analysis**: Deep OS checks with remediation orchestration
+- **Network visibility**: LAN discovery, traffic monitoring, and session analysis
+- **Intelligent advisory system**: Guided fixes with state tracking and progress monitoring
+- **Privileged operations via Helper**: Secure separation for actions requiring elevated rights
+- **Optimized runtime**: Async, resource‑efficient implementation for desktop and CI/CD environments
+- **Service interface**: RPC surface consumed by the app and developer CLI
+
+## Key Open Source Components
+
+EDAMAME maintains several open source projects that power the platform and can be used independently:
+
+- **[EDAMAME Foundation](https://github.com/edamametechnologies/edamame_foundation)**: Core Rust library for posture assessment, threat models, secure helper IPC, scoring, and policy enforcement.
+- **[EDAMAME Posture CLI](https://github.com/edamametechnologies/edamame_posture_cli)**: Cross‑platform CLI to assess posture, remediate issues, enforce policies, and generate compliance reports.
+- **[EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper)**: Privileged companion app that safely executes checks and remediation steps requiring elevated rights.
+- **[EDAMAME CLI](https://github.com/edamametechnologies/edamame_cli)**: Developer‑friendly interface to EDAMAME core services with interactive RPC exploration.
+- **[Threat Models](https://github.com/edamametechnologies/threatmodels)**: Public repository of security benchmarks, policies, whitelists/blacklists, and signatures used by the platform.
+- **[GitHub Action](https://github.com/edamametechnologies/edamame_posture_action)** / **[GitLab Action](https://gitlab.com/edamametechnologies/edamame_posture_action)**: CI/CD integrations to enforce posture and network controls in pipelines.
+- **[undeadlock](https://github.com/edamametechnologies/undeadlock)**: Low‑overhead diagnostics for async locks and maps to surface contention/deadlocks during development.
+- **[flodbadd](https://github.com/edamametechnologies/flodbadd)**: Network visibility engine for packet capture, session analysis, whitelists/blacklists, and on‑device anomaly detection.
+- **[edamame_models](https://github.com/edamametechnologies/edamame_models)**: Signature‑based cloud data model manager with custom overrides and thread‑safe access.
 
 ## Resources
 - [Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)
