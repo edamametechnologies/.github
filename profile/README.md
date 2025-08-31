@@ -18,31 +18,7 @@ EDAMAME Security is your all-in-one tool to secure, understand and prove your de
 
 https://github.com/user-attachments/assets/72fb4115-ac79-4267-b79c-fba2a5dfed9e
 
-### Download the Application
-
-#### macOS
-- Install from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/macos/edamame-latest.pkg) for an all-in-one intallation or the [Mac App Store](https://apps.apple.com/app/edamame-security/id1636777324) for an Apple vetted sanboxed main app and EDAMAME to install the [EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper/releases) open-source system helper for the required system access
-
-
-#### Windows
-1. Install from [EDAMAME](https://edamame.s3.eu-west-1.amazonaws.com/windows/edamame-latest.msix) or the [Microsoft Store](https://www.microsoft.com/store/apps/9N399LMTKQLQ) for a Microsoft vetted sandboxed main app
-2. Install the [EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper/releases) open-source system helper for the required system access
-3. Install [npcap](https://npcap.com/#download) to enable traffic capture
-
-#### Linux
-```bash
-# Import GPG key and add repository
-wget -O - https://edamame.s3.eu-west-1.amazonaws.com/repo/public.key | sudo gpg --dearmor -o /usr/share/keyrings/edamame.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/edamame.gpg] https://edamame.s3.eu-west-1.amazonaws.com/repo stable main" | sudo tee /etc/apt/sources.list.d/edamame.list
-
-# Install EDAMAME Security
-sudo apt update
-sudo apt install edamame-security
-```
-
-#### Mobile
-- iOS: [App Store](https://apps.apple.com/app/edamame-security-mobile/id6448937722)
-- Android/ChromeOS: [Google Play Store](https://play.google.com/store/apps/details?id=com.edamametech.edamame)
+See:[EDAMAME Security Public Repo](https://github.com/edamametechnologies/edamame_security)
 
 ### Security Without Undermining Productivity
 
