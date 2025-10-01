@@ -137,19 +137,19 @@ EDAMAME Core is the central engine that powers both the EDAMAME Security applica
 
 EDAMAME maintains several open source projects that power the platform and can be used independently:
 - **[Threat Models](https://github.com/edamametechnologies/threatmodels)**: Public repository of security benchmarks, policies, whitelists/blacklists, and signatures used by the platform. See **[Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)**.
-- **[flodbadd](https://github.com/edamametechnologies/flodbadd)**: Network visibility engine for packet capture, session analysis, whitelists/blacklists, and on‑device anomaly detection. An example tool using it is **[flodviddar](https://github.com/edamametechnologies/flodviddar)**.
-- **[undeadlock](https://github.com/edamametechnologies/undeadlock)**: Low‑overhead diagnostics for async locks and maps to surface contention/deadlocks during development.
-- **[extended-isolation-forest](https://github.com/edamametechnologies/extended-isolation-forest)**: Our fork of the **[extended-isolation-forest Rust crate](https://github.com/nmandery/extended-isolation-forest)** used for egress traffic anomaly detection.
+- **[Flodbadd](https://github.com/edamametechnologies/flodbadd)**: Network visibility engine for packet capture, session analysis, whitelists/blacklists, and on‑device anomaly detection. An example tool using it is **[Flodviddar](https://github.com/edamametechnologies/flodviddar)**.
+- **[Undeadlock](https://github.com/edamametechnologies/undeadlock)**: Low‑overhead diagnostics for async locks and maps to surface contention/deadlocks during development.
+- **[Extended Isolation Forest](https://github.com/edamametechnologies/extended-isolation-forest)**: Our fork of the **[extended-isolation-forest Rust crate](https://github.com/nmandery/extended-isolation-forest)** used for egress traffic ML anomaly detection.
 
 Our system helper is fully open source:
 - **[EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper)**: Privileged companion app that safely executes checks and remediation steps requiring elevated rights.
 
 It relies on open source libraries:
-- **[edamame_models](https://github.com/edamametechnologies/edamame_models)**: Signature‑based cloud data model manager with custom overrides and thread‑safe access.
+- **[EDAMAME Models](https://github.com/edamametechnologies/edamame_models)**: Signature‑based cloud data model manager with custom overrides and thread‑safe access.
 - **[EDAMAME Foundation](https://github.com/edamametechnologies/edamame_foundation)**: Core Rust library for posture assessment, threat models, secure helper IPC, scoring, and policy enforcement.
 
 Our closed source EDAMAME Core (Rust) uses the following additional libraries:
-- **[edamame_backend](https://github.com/edamametechnologies/edamame_backend)**: Complete list of data structures used to communicate with the backend.
+- **[EDAMAME Backend](https://github.com/edamametechnologies/edamame_backend)**: Complete list of data structures used to communicate with the backend.
 
 The CLI wrappers for edamame_core are fully open source:
 - **[GitHub Action](https://github.com/edamametechnologies/edamame_posture_action)** / **[GitLab Action](https://gitlab.com/edamametechnologies/edamame_posture_action)**: CI/CD integrations to enforce posture and network controls in pipelines.
