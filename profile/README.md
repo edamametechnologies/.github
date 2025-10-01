@@ -48,7 +48,7 @@ Protect your personal repositories and projects with powerful CI/CD security too
    - Create whitelists based on normal build behavior to define allowed network connections
    - Detect and block suspicious outbound connections that could indicate supply chain attacks
    - Generate network audit trails for security verification and incident response
-   - Example: `edamame_posture background-start-disconnected true github_linux`
+   - Example: `edamame_posture background-start-disconnected true github_ubuntu`
 
 3. **Pipeline Security Gates**
    - Fail builds when security posture doesn't meet requirements, preventing insecure code deployment
