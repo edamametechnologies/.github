@@ -9,7 +9,7 @@ EDAMAME ensures all machines accessing code, secrets, or sensitive test data are
 EDAMAME Security is your all-in-one tool to secure, understand, and prove your dev workstation—from OS to network. It delivers:
 
 - **Security Benchmarks:** Assess against standards like [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks), SOC 2, and ISO 27001
-- **AI Analysis:** Anonymized, holistic posture summaries and action plan using a frontier LLM
+- **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with three operational modes: "Do It For Me" (fully automatic), "Analyze & Recommend" (review before execution), and "Backend AI Analysis" (deep network scans). Supports Claude, OpenAI, and Ollama (local/privacy-focused). Complete transparency with full action history, reasoning, and undo capability. Streamable HTTP MCP server (localhost-only, port 3000) with PSK authentication enables external AI tools like Claude Desktop to securely access 9 security automation tools
 - **One-Click Remediation:** Automatically fix common security issues without requiring deep security expertise
 - **Network Visibility:** Built-in network scanning (inspired by 'Nmap') and traffic monitoring (inspired by 'Wireshark'). Anonymized, RAG‑based analysis of device vulnerabilities and suspicious traffic sessions; ML‑based traffic anomaly detection
 - **Digital Identity Management:** Integrated with [Have I Been Pwned](https://haveibeenpwned.com) for online identity management with AI analysis of security impact
