@@ -9,7 +9,8 @@ EDAMAME ensures all machines accessing code, secrets, or sensitive test data are
 EDAMAME Security is your all-in-one tool to secure, understand, and prove your dev workstation—from OS to network. It delivers:
 
 - **Security Benchmarks:** Assess against standards like [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks), SOC 2, and ISO 27001
-- **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with three operational modes: "Do It For Me" (fully automatic), "Analyze & Recommend" (review before execution), and "Backend AI Analysis" (deep network scans). Supports Claude, OpenAI, and Ollama (local/privacy-focused). Complete transparency with full action history, reasoning, and undo capability. Streamable HTTP MCP server (localhost-only, port 3000) with PSK authentication enables external AI tools like Claude Desktop to securely access 9 security automation tools
+- **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with three operational modes: "Do It For Me" (fully automatic), "Analyze & Recommend" (review before execution), and "Backend AI Analysis" (deep network scans). Supports Claude, OpenAI, and Ollama (local/privacy-focused). Collapsible automation controls provide live workflow status, Do It For Me/Analyze buttons, scheduling toggles (Auto run + Auto confirm), and an inline cancel action. Streamable HTTP MCP server (localhost-only, port 3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 9 security automation tools. Complete transparency via filterable action history, Confirm/Undo All, detailed reasoning, and deep links back to Remed, LANscan, Capture, and Pwned views.
+  - When you start a deep scan, click **Request report** to queue backend analysis and use **Read latest report** to open the newest results once the job finishes.
 - **One-Click Remediation:** Automatically fix common security issues without requiring deep security expertise
 - **Network Visibility:** Built-in network scanning (inspired by 'Nmap') and traffic monitoring (inspired by 'Wireshark'). Anonymized, RAG‑based analysis of device vulnerabilities and suspicious traffic sessions; ML‑based traffic anomaly detection
 - **Digital Identity Management:** Integrated with [Have I Been Pwned](https://haveibeenpwned.com) for online identity management with AI analysis of security impact
@@ -35,6 +36,11 @@ Protect your personal repositories and projects with powerful CI/CD security too
   - **CLI Tools:** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli))
   - **GitHub Action:** Seamless GitHub integration ([GitHub](https://github.com/edamametechnologies/edamame_posture_action))
   - **GitLab Action:** Integration for GitLab CI/CD workflows ([GitLab](https://gitlab.com/edamametechnologies/edamame_posture_action))
+
+- **Installation Methods:**
+  - **Linux**: APT repository (Debian/Ubuntu), Alpine APK, or direct binary download
+  - **macOS**: Homebrew (`brew install edamame-posture`) or direct binary download
+  - **Windows**: Chocolatey (`choco install edamame-posture`) or direct binary download
 
 #### Key Security Use Cases
 
@@ -152,5 +158,5 @@ Our closed source EDAMAME Core (Rust) uses the following additional libraries:
 
 The CLI wrappers for edamame_core are fully open source:
 - **[GitHub Action](https://github.com/edamametechnologies/edamame_posture_action)** / **[GitLab Action](https://gitlab.com/edamametechnologies/edamame_posture_action)**: CI/CD integrations to enforce posture and network controls in pipelines.
-- **[EDAMAME CLI](https://github.com/edamametechnologies/edamame_cli)**: Developer‑friendly interface to EDAMAME core services with interactive RPC exploration.
-- **[EDAMAME Posture CLI](https://github.com/edamametechnologies/edamame_posture_cli)**: Cross‑platform CLI to assess posture, remediate issues, enforce policies, and generate compliance reports.
+- **[EDAMAME CLI](https://github.com/edamametechnologies/edamame_cli)**: Developer‑friendly interface to EDAMAME core services with interactive RPC exploration. Available via APT (Debian/Ubuntu), APK (Alpine), Homebrew (macOS), Chocolatey (Windows), or direct binary download.
+- **[EDAMAME Posture CLI](https://github.com/edamametechnologies/edamame_posture_cli)**: Cross‑platform CLI to assess posture, remediate issues, enforce policies, and generate compliance reports. Available via APT (Debian/Ubuntu), APK (Alpine), Homebrew (macOS), Chocolatey (Windows), or direct binary download.
