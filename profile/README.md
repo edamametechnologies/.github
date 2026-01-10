@@ -15,7 +15,7 @@ EDAMAME Security is your all-in-one tool to secure, understand, and prove your d
   - **OpenAI (GPT)** - Fast responses and general-purpose analysis (API key required)
   - **Ollama (Local)** - Privacy-focused, runs entirely on your machine (no cloud dependency)
   - **Automation Controls** - Collapsible controls with live workflow status, Do It For Me/Analyze buttons, scheduling toggles (Auto run + Auto confirm), and inline cancel action
-  - **MCP Server** - Streamable HTTP Model Context Protocol server (localhost-only, port 3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 9 security automation tools
+  - **MCP Server** - Streamable HTTP Model Context Protocol server (configurable host/port, default localhost:3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 9 security automation tools
   - **Action History** - Complete transparency via filterable action history, Confirm/Undo All, detailed reasoning, and deep links back to Remed, LANscan, Capture, and Pwned views
   - **Backend Analysis** - Start a deep scan, click Request report to queue backend analysis and use Read latest report to open the results
 - **One-Click Remediation:** Automatically fix common security issues without requiring deep security expertise
