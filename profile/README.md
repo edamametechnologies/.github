@@ -1,6 +1,6 @@
 # Welcome to EDAMAME Technologies
 
-EDAMAME ensures all machines accessing code, secrets, or sensitive test data are secured without the challenges of traditional Unified Endpoint Management. Empower every stakeholder—from contractors to developers—to safeguard the software development lifecycle without slowing down development.
+EDAMAME ensures all machines accessing code, secrets, or sensitive test data are secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers—to safeguard the software development lifecycle without slowing down development.
 
 ## For Individual Developers
 
@@ -9,13 +9,19 @@ EDAMAME ensures all machines accessing code, secrets, or sensitive test data are
 EDAMAME Security is your all-in-one tool to secure, understand, and prove your dev workstation—from OS to network. It delivers:
 
 - **Security Benchmarks:** Assess against standards like [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks), SOC 2, and ISO 27001
-- **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with three operational modes: "Do It For Me" (fully automatic), "Analyze & Recommend" (review before execution), and "Backend AI Analysis" (deep network scans). Supports Claude, OpenAI, and Ollama (local/privacy-focused). Collapsible automation controls provide live workflow status, Do It For Me/Analyze buttons, scheduling toggles (Auto run + Auto confirm), and an inline cancel action. Streamable HTTP MCP server (localhost-only, port 3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 9 security automation tools. Complete transparency via filterable action history, Confirm/Undo All, detailed reasoning, and deep links back to Remed, LANscan, Capture, and Pwned views.
+- **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with three operational modes: "Do It For Me" (fully automatic), "Analyze & Recommend" (review before execution), and "Backend AI Analysis" (deep network scans). Supports multiple LLM providers:
+  - **Cloud LLM (EDAMAME)** - Managed AI service with OAuth authentication via EDAMAME Portal; free and paying tiers (see [portal.edamame.tech](https://portal.edamame.tech)); zero API key management
+  - **Claude (Anthropic)** - Detailed reasoning and nuanced security decisions (API key required)
+  - **OpenAI (GPT)** - Fast responses and general-purpose analysis (API key required)
+  - **Ollama (Local)** - Privacy-focused, runs entirely on your machine (no cloud dependency)
+
+  Collapsible automation controls provide live workflow status, Do It For Me/Analyze buttons, scheduling toggles (Auto run + Auto confirm), and an inline cancel action. A Streamable HTTP **Model Context Protocol (MCP)** server (localhost-only, port 3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 9 security automation tools. Complete transparency via filterable action history, Confirm/Undo All, detailed reasoning, and deep links back to Remed, LANscan, Capture, and Pwned views.
   - When you start a deep scan, click **Request report** to queue backend analysis and use **Read latest report** to open the newest results once the job finishes.
 - **One-Click Remediation:** Automatically fix common security issues without requiring deep security expertise
 - **Network Visibility:** Built-in network scanning (inspired by 'Nmap') and traffic monitoring (inspired by 'Wireshark'). Anonymized, RAG‑based analysis of device vulnerabilities and suspicious traffic sessions; ML‑based traffic anomaly detection
 - **Digital Identity Management:** Integrated with [Have I Been Pwned](https://haveibeenpwned.com) for online identity management with AI analysis of security impact
 - **Certified Compliance Report Generation:** Contractors required to prove their device meets baseline security requirements (SOC 2 or ISO 27001) can generate a compliance report with a single click.
-- **Privacy-First Management:** Connects to our "no MDM" platform ([edamame.tech](https://www.edamame.tech)), enabling continuous reporting of security posture and integration with access control to implement Zero Trust for code, secrets, and test data access.
+- **Privacy-first management:** Connects to our no‑MDM platform ([edamame.tech](https://www.edamame.tech)), enabling continuous reporting of security posture and integration with access control to implement Zero Trust for code, secrets, and test data access.
 
 https://github.com/user-attachments/assets/368ab85d-c3ba-4138-80f5-c19609eb6579
 
@@ -33,12 +39,15 @@ See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edama
 Protect your personal repositories and projects with powerful CI/CD security tools:
 
 - **Available Tools:**
-  - **CLI Tools:** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli))
-  - **GitHub Action:** Seamless GitHub integration ([GitHub](https://github.com/edamametechnologies/edamame_posture_action))
+  - **CLI (EDAMAME Posture):** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli))
+  - **GitHub Action (EDAMAME Posture GitHub Action):** Seamless GitHub integration ([GitHub](https://github.com/edamametechnologies/edamame_posture_action))
   - **GitLab Action:** Integration for GitLab CI/CD workflows ([GitLab](https://gitlab.com/edamametechnologies/edamame_posture_action))
 
 - **Installation Methods:**
-  - **Linux**: APT repository (Debian/Ubuntu), Alpine APK, or direct binary download
+  - **Linux quick install**: `curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/edamametechnologies/edamame_posture_cli/main/install.sh | sh`
+    - Supports configuration arguments for automated setup with AI Assistant
+  - Example: `| sh -s -- --user USER --domain DOMAIN --pin PIN --claude-api-key KEY --agentic-mode auto`
+  - **Linux**: APT repository (Debian/Ubuntu/Raspbian), Alpine APK, or direct binary download
   - **macOS**: Homebrew (`brew install edamame-posture`) or direct binary download
   - **Windows**: Chocolatey (`choco install edamame-posture`) or direct binary download
 
@@ -50,11 +59,11 @@ Protect your personal repositories and projects with powerful CI/CD security too
    - Apply automatic remediations to fix common security issues in ephemeral environments
    - Example: `edamame_posture check-policy 2.0 "encrypted disk disabled,critical vulnerability" "SOC-2"`
 
-2. **Egress Traffic Control & Anomaly Detection**
+2. **Egress traffic control & anomaly detection**
    - Create whitelists based on normal build behavior to define allowed network connections
    - Detect and block suspicious outbound connections that could indicate supply chain attacks
    - Generate network audit trails for security verification and incident response
-   - Example: `edamame_posture background-start-disconnected true github_ubuntu`
+   - Example: `edamame_posture background-start-disconnected --network-scan --packet-capture --whitelist github_ubuntu`
 
 3. **Pipeline Security Gates**
    - Fail builds when security posture doesn't meet requirements, preventing insecure code deployment
@@ -65,13 +74,21 @@ Protect your personal repositories and projects with powerful CI/CD security too
 Example GitHub Action for your personal repository:
 ```yaml
 - name: Setup EDAMAME Posture
-  uses: edamametechnologies/edamame_posture_action@v0
+  uses: edamametechnologies/edamame_posture_action@v1
   with:
     network_scan: true
+    packet_capture: true
     auto_remediate: true
     edamame_minimum_score: 2.0
     custom_whitelists_path: ./.github/workflows/whitelist.json
-    whitelist_conformance: true  # Fail pipeline if unauthorized network traffic detected
+    set_custom_whitelists: true
+
+# Later, at workflow end:
+- name: Verify network activity
+  uses: edamametechnologies/edamame_posture_action@v1
+  with:
+    dump_sessions_log: true
+    exit_on_whitelist_exceptions: true  # Fail pipeline if unauthorized network traffic is detected
 ```
 
 **Real-world scenario:** During a build, your runner makes unexpected connections to unknown IP addresses or domains. EDAMAME detects this unauthorized egress traffic, fails the pipeline, and provides detailed logs showing what connections violated your whitelist — potentially preventing a supply chain attack or data exfiltration incident.
