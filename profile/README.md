@@ -16,7 +16,7 @@ EDAMAME Security is your all-in-one tool to secure, understand, and prove your d
   - **Ollama (Local)** - Privacy-focused, runs entirely on your machine (no cloud dependency)
   - **Automation Controls** - Collapsible controls with live workflow status, Do It For Me/Analyze buttons, scheduling toggles (Auto run + Auto confirm), and inline cancel action
   - **MCP Server** - Streamable HTTP Model Context Protocol server (configurable host/port, default localhost:3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 9 security automation tools
-  - **Action History** - Complete transparency via filterable action history, Confirm/Undo All, detailed reasoning, and deep links back to Remed, LANscan, Capture, and Pwned views
+  - **Action History** - Complete transparency via filterable action history, Confirm/Undo All, detailed reasoning, and deep links to related security views
 - **One-Click Remediation:** Automatically fix common security issues without requiring deep security expertise
 - **Network Visibility:** Built-in network scanning (inspired by 'Nmap') and traffic monitoring (inspired by 'Wireshark'). Anonymized, RAG‑based analysis of device vulnerabilities and suspicious traffic sessions; ML‑based traffic anomaly detection
 - **Digital Identity Management:** Integrated with [Have I Been Pwned](https://haveibeenpwned.com) for online identity management with AI analysis of security impact
