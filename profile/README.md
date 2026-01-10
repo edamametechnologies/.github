@@ -9,7 +9,7 @@ EDAMAME ensures all machines accessing code, secrets, or sensitive test data are
 EDAMAME Security is your all-in-one tool to secure, understand, and prove your dev workstation—from OS to network. It delivers:
 
 - **Security Benchmarks:** Assess against standards like [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks), SOC 2, and ISO 27001
-- **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with three operational modes: "Do It For Me" (fully automatic), "Analyze & Recommend" (review before execution), and "Backend AI Analysis" (deep network scans). Supports multiple LLM providers:
+- **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with two operational modes: "Do It For Me" (fully automatic) and "Analyze & Recommend" (review before execution). Supports multiple LLM providers:
   - **Cloud LLM (EDAMAME)** - Managed AI service with OAuth authentication via EDAMAME Portal; free and paying tiers (see [portal.edamame.tech](https://portal.edamame.tech)); zero API key management
   - **Claude (Anthropic)** - Detailed reasoning and nuanced security decisions (API key required)
   - **OpenAI (GPT)** - Fast responses and general-purpose analysis (API key required)
