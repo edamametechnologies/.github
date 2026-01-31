@@ -2,6 +2,47 @@
 
 EDAMAME ensures all machines accessing code, secrets, or sensitive test data are secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers—to safeguard the software development lifecycle without slowing down development.
 
+## EDAMAME Agents
+
+**EDAMAME Agents** are AI-powered security assistants that continuously monitor, analyze, and protect your development environment:
+
+| Agent | Form Factor | Target Environment |
+|-------|-------------|-------------------|
+| **[EDAMAME Security](https://github.com/edamametechnologies/edamame_security)** | Desktop/Mobile App | Developer workstations, personal devices |
+| **[EDAMAME Posture](https://github.com/edamametechnologies/edamame_posture)** | CLI Tool | CI/CD pipelines, servers, headless systems |
+
+### What Makes an Agent?
+
+Both agents share the same core intelligence and operate autonomously:
+
+```
+OBSERVE  →  Continuous monitoring of threats, network, traffic, and identity
+ANALYZE  →  LLM-powered analysis with risk scoring and pattern recognition
+DECIDE   →  auto_resolve (safe actions) or escalate (risky actions needing review)
+ACT      →  Remediate threats, dismiss false positives, update whitelists
+REPORT   →  Slack notifications, Hub dashboards, compliance reports
+```
+
+**Key Principle**: Human-in-the-loop safety. Agents escalate risky decisions and all actions are reversible.
+
+### EDAMAME Portal & Shared LLM Subscription
+
+Both agents can use **EDAMAME's managed LLM service** through the [EDAMAME Portal](https://portal.edamame.tech), eliminating the need for separate API keys:
+
+| Feature | Description |
+|---------|-------------|
+| **Unified Account** | Single login for both Security and Posture agents |
+| **Managed LLM** | No third-party API keys needed |
+| **Usage Dashboard** | Track LLM usage across all your agents |
+| **Subscription Tiers** | Free tier included; paid plans for higher limits |
+| **API Keys** | Generate keys for headless/CI environments |
+
+**Authentication:**
+- **EDAMAME Security (GUI)**: OAuth sign-in via "Sign in to Cloud LLM"
+- **EDAMAME Posture (CLI)**: API key via `EDAMAME_LLM_API_KEY` environment variable
+
+**Alternative Providers**: Both agents also support Claude (Anthropic), OpenAI, and Ollama (local) if you prefer bring-your-own LLM.
+
 ## For Individual Developers
 
 ### EDAMAME Security: Free App
