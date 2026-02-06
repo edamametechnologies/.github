@@ -196,6 +196,10 @@ EDAMAME Core is the central engine that powers both the EDAMAME Security applica
 - **Optimized runtime**: Async, resource‑efficient implementation for desktop and CI/CD environments
 - **Service interface**: RPC surface consumed by the app and developer CLI
 
+See **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api)** for the full public API documentation covering architecture, 150+ RPC methods, event system, gRPC and MCP interfaces, feature flags, and multi‑platform support.
+
+**OEM Licensing**: EDAMAME Core is available for OEM integration into third‑party products. Contact [EDAMAME Technologies](https://www.edamame.tech) for licensing inquiries.
+
 ## Key Open Source Components
 
 EDAMAME maintains several open source projects that power the platform and can be used independently:
@@ -211,7 +215,7 @@ It relies on open source libraries:
 - **[EDAMAME Models](https://github.com/edamametechnologies/edamame_models)**: Signature‑based cloud data model manager with custom overrides and thread‑safe access.
 - **[EDAMAME Foundation](https://github.com/edamametechnologies/edamame_foundation)**: Core Rust library for posture assessment, threat models, secure helper IPC, scoring, and policy enforcement.
 
-Our closed source EDAMAME Core (Rust) uses the following additional libraries:
+Our closed source EDAMAME Core (Rust) -- see **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api)** for public API documentation -- uses the following additional libraries:
 - **[EDAMAME Backend](https://github.com/edamametechnologies/edamame_backend)**: Complete list of data structures used to communicate with the backend.
 
 The CLI wrappers for edamame_core are fully open source:
