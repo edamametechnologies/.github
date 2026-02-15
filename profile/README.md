@@ -1,6 +1,6 @@
 # Welcome to EDAMAME Technologies
 
-EDAMAME ensures all machines accessing code, secrets, or sensitive test data are secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers—to safeguard the software development lifecycle without slowing down development.
+EDAMAME ensures all machines accessing code, secrets, or sensitive test data are secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers to coding agents—to safeguard the software development lifecycle without slowing down development.
 
 ## EDAMAME Agents
 
@@ -9,7 +9,7 @@ EDAMAME ensures all machines accessing code, secrets, or sensitive test data are
 | Agent | Form Factor | Target Environment |
 |-------|-------------|-------------------|
 | **[EDAMAME Security](https://github.com/edamametechnologies/edamame_security)** | Desktop/Mobile App | Developer workstations, personal devices |
-| **[EDAMAME Posture](https://github.com/edamametechnologies/edamame_posture)** | CLI Tool | CI/CD pipelines, servers, headless systems |
+| **[EDAMAME Posture](https://github.com/edamametechnologies/edamame_posture)** | CLI Tool | CI/CD pipelines, coding agents, servers, headless systems |
 
 ### What Makes an Agent?
 
@@ -73,11 +73,11 @@ See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edama
 - **CLI or GUI Interface:** Use the app interface or CLI commands (`edamame_posture score`, etc.) - they have equivalent functionality
 - **Self-Directed Assessment:** Evaluate your workstation's security posture against industry standards independent of any central management
 - **Local-Only Controls:** Enforce security policies without external dependencies or registration requirements
-- **Developer Workflow Integration:** Add security gates to your personal CI/CD pipeline with exit-code-based controls
+- **Developer Workflow Integration:** Add security gates to your personal CI/CD pipeline and coding agent infrastructure with exit-code-based controls
 
-### EDAMAME Posture: Free CI/CD CLI
+### EDAMAME Posture: Free CI/CD & Coding Agents CLI
 
-Protect your personal repositories and projects with powerful CI/CD security tools:
+Protect your personal repositories, projects, and coding agent infrastructure with powerful security tools:
 
 - **Available Tools:**
   - **CLI (EDAMAME Posture):** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli))
@@ -94,10 +94,11 @@ Protect your personal repositories and projects with powerful CI/CD security too
 
 #### Key Security Use Cases
 
-1. **Runner Hardening & Validation**
-   - Automatically scan for vulnerabilities and misconfigurations in your CI/CD environment
+1. **Runner & Coding Agent Hardening**
+   - Automatically scan for vulnerabilities and misconfigurations in your CI/CD and coding agent environment
    - Enforce minimum security scores on runners before allowing builds to proceed
    - Apply automatic remediations to fix common security issues in ephemeral environments
+   - Let coding agents self-monitor via [MCP integration](https://www.edamame.tech/agents)
    - Example: `edamame_posture check-policy 2.0 "encrypted disk disabled,critical vulnerability" "SOC-2"`
 
 2. **Egress traffic control & anomaly detection**
@@ -140,7 +141,7 @@ Example GitHub Action for your personal repository:
 - **Local Policy Enforcement:** Define and enforce security standards without requiring external registration or connectivity
 - **Disconnected Network Monitoring:** Monitor and enforce network traffic whitelists in your CI/CD pipeline
 - **Security Signatures:** Add cryptographically verifiable security posture signatures to your commits and releases
-- **Automated Runner Hardening:** Automatically secure CI/CD runners and respond to security posture changes
+- **Automated Runner & Agent Hardening:** Automatically secure CI/CD runners and coding agent servers, and respond to security posture changes
 - **Security Beyond Compliance:** Address network risks with automated audits and integrated network scanning
 
 ## For Development Teams & Enterprises
@@ -193,7 +194,7 @@ EDAMAME Core is the central engine that powers both the EDAMAME Security applica
 - **Network visibility**: LAN discovery, traffic monitoring, and session analysis
 - **Intelligent advisory system**: Guided fixes with state tracking and progress monitoring
 - **Privileged operations via Helper**: Secure separation for actions requiring elevated rights
-- **Optimized runtime**: Async, resource‑efficient implementation for desktop and CI/CD environments
+- **Optimized runtime**: Async, resource‑efficient implementation for desktop, CI/CD, and coding agent environments
 - **Service interface**: RPC surface consumed by the app and developer CLI
 
 See **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api)** for the full public API documentation covering architecture, 150+ RPC methods, event system, gRPC and MCP interfaces, feature flags, and multi‑platform support.
