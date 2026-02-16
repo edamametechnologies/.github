@@ -1,6 +1,8 @@
 # Welcome to EDAMAME Technologies
 
-EDAMAME ensures all machines accessing code, secrets, or sensitive test data are secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers to coding agents—to safeguard the software development lifecycle without slowing down development.
+**Developer-First and Agent-First Endpoint Security and Access.** Zero Trust for the AI era software development lifecycle.
+
+EDAMAME ensures every workstation, CI/CD runner, and coding agent accessing code, secrets, or sensitive test data is secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers—to safeguard the AI era SDLC without slowing down development.
 
 ## EDAMAME Agents
 
@@ -8,8 +10,8 @@ EDAMAME ensures all machines accessing code, secrets, or sensitive test data are
 
 | Agent | Form Factor | Target Environment |
 |-------|-------------|-------------------|
-| **[EDAMAME Security](https://github.com/edamametechnologies/edamame_security)** | Desktop/Mobile App | Developer workstations, personal devices |
-| **[EDAMAME Posture](https://github.com/edamametechnologies/edamame_posture)** | CLI Tool | CI/CD pipelines, coding agents, servers, headless systems |
+| **[EDAMAME Security App](https://github.com/edamametechnologies/edamame_security)** | Desktop/Mobile App | Developer workstations, personal devices |
+| **[EDAMAME Posture CLI](https://github.com/edamametechnologies/edamame_posture)** | CLI Tool | CI/CD pipelines, coding agents, servers, headless systems |
 
 ### What Makes an Agent?
 
@@ -45,9 +47,9 @@ Both agents can use **EDAMAME's managed LLM service** through the [EDAMAME Porta
 
 ## For Individual Developers
 
-### EDAMAME Security: Free App
+### EDAMAME Security App: Free
 
-EDAMAME Security is your all-in-one tool to secure, understand, and prove your dev workstation—from OS to network. It delivers:
+EDAMAME Security App is your all-in-one tool to secure, understand, and prove your dev workstation—from OS to network. It delivers:
 
 - **Security Benchmarks:** Assess against standards like [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks), SOC 2, and ISO 27001
 - **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with two operational modes: "Do It For Me" (fully automatic) and "Analyze & Recommend" (review before execution). Supports multiple LLM providers:
@@ -75,9 +77,9 @@ See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edama
 - **Local-Only Controls:** Enforce security policies without external dependencies or registration requirements
 - **Developer Workflow Integration:** Add security gates to your personal CI/CD pipeline and coding agent infrastructure with exit-code-based controls
 
-### EDAMAME Posture: Free CI/CD & Coding Agents CLI
+### EDAMAME Posture: Free CLI
 
-Protect your personal repositories, projects, and coding agent infrastructure with powerful security tools:
+Protect your CI/CD pipelines, coding agents, and personal repositories with powerful security tools:
 
 - **Available Tools:**
   - **CLI (EDAMAME Posture):** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli))
@@ -144,6 +146,26 @@ Example GitHub Action for your personal repository:
 - **Automated Runner & Agent Hardening:** Automatically secure CI/CD runners and coding agent servers, and respond to security posture changes
 - **Security Beyond Compliance:** Address network risks with automated audits and integrated network scanning
 
+#### Securing Coding Agents
+
+Coding agents like Cursor, Claude Code, and OpenAI Codex execute shell commands, access credentials, install packages, and modify system configurations autonomously. They are among the most privileged processes on your workstation or server. EDAMAME Posture provides two complementary integration paths:
+
+**Path 1: Harden the Server Running Your Agent**
+
+Deploy EDAMAME Posture CLI on the server or workstation hosting your coding agent—the same way you would secure a self-hosted CI/CD runner:
+- Continuous posture monitoring and scoring
+- Automated hardening with agentic remediation (`--agentic-mode auto`)
+- L7 traffic analysis and LAN scanning
+- Human-in-the-loop escalation via Slack
+
+**Path 2: Let the Agent Watch Itself (MCP)**
+
+Connect your coding agent to EDAMAME Posture via [Model Context Protocol (MCP)](https://github.com/edamametechnologies/edamame_core_api). The agent queries real-time security signals and cross-references its declared intent against actual system behavior:
+- **Two-plane security**: Correlate reasoning-plane intent (what the agent decided) with system-plane effects (what the machine did)
+- **Traffic divergence detection**: Flag when the agent's actual network behavior doesn't match its stated actions
+- **Posture drift alerts**: Surface before/after evidence when firewall state, remote access, or endpoint protection changes unexpectedly
+- **Self-monitoring**: The agent continuously validates its own environment remains secure
+
 ## For Development Teams & Enterprises
 
 ### EDAMAME Hub: Freemium SaaS
@@ -166,7 +188,7 @@ Create your domain, verify it, and onboard your users through the Onboarding tab
 
 https://github.com/user-attachments/assets/335298d0-9e26-4eb3-a388-f1ce6471822d
 
-### User-up Security for Your SDLC
+### User-up Security for Your AI Era SDLC
 
 EDAMAME's "reporting-only" architecture prevents remote control of endpoints, reducing legal and privacy liabilities while building trust and shared responsibility:
 
