@@ -235,7 +235,7 @@ Our system helper is fully open source:
 - **[EDAMAME Helper](https://github.com/edamametechnologies/edamame_helper)**: Privileged companion app that safely executes checks and remediation steps requiring elevated rights.
 
 It relies on open source libraries:
-- **[EDAMAME Models](https://github.com/edamametechnologies/edamame_models)**: Signature‑based cloud data model manager with custom overrides and thread‑safe access.
+- **[EDAMAME Models](https://github.com/edamametechnologies/threatmodels-rs)**: Signature‑based cloud data model manager with custom overrides and thread‑safe access.
 - **[EDAMAME Foundation](https://github.com/edamametechnologies/edamame_foundation)**: Core Rust library for posture assessment, threat models, secure helper IPC, scoring, and policy enforcement.
 
 Our closed source EDAMAME Core (Rust) -- see **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api)** for public API documentation -- uses the following additional libraries:
