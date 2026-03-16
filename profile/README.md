@@ -58,7 +58,7 @@ EDAMAME Security App is your all-in-one tool to secure, understand, and prove yo
   - **OpenAI (GPT)** - Fast responses and general-purpose analysis (API key required)
   - **Ollama (Local)** - Privacy-focused, runs entirely on your machine (no cloud dependency)
   - **Automation Controls** - Collapsible controls with live workflow status, Do It For Me/Analyze buttons, scheduling toggles (Auto run + Auto confirm), and inline cancel action
-  - **MCP Server** - Streamable HTTP Model Context Protocol server (configurable host/port, default localhost:3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 9 security automation tools
+  - **MCP Server** - Streamable HTTP Model Context Protocol server (configurable host/port, default localhost:3000) with PSK authentication (desktop builds only) enables external AI tools like Claude Desktop to securely access 19 security automation tools
   - **Action History** - Complete transparency via filterable action history, Confirm/Undo All, detailed reasoning, and deep links to related security views
 - **One-Click Remediation:** Automatically fix common security issues without requiring deep security expertise
 - **Network Visibility:** Built-in network scanning (inspired by 'Nmap') and traffic monitoring (inspired by 'Wireshark'). Anonymized, RAG‑based analysis of device vulnerabilities and suspicious traffic sessions; ML‑based traffic anomaly detection
@@ -82,12 +82,12 @@ See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edama
 Protect your CI/CD pipelines, coding agents, and personal repositories with powerful security tools:
 
 - **Available Tools:**
-  - **CLI (EDAMAME Posture):** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture_cli))
+  - **CLI (EDAMAME Posture):** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture))
   - **GitHub Action (EDAMAME Posture GitHub Action):** Seamless GitHub integration ([GitHub](https://github.com/edamametechnologies/edamame_posture_action))
   - **GitLab Action:** Integration for GitLab CI/CD workflows ([GitLab](https://gitlab.com/edamametechnologies/edamame_posture_action))
 
 - **Installation Methods:**
-  - **Linux quick install**: `curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/edamametechnologies/edamame_posture_cli/main/install.sh | sh`
+  - **Linux quick install**: `curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/edamametechnologies/edamame_posture/main/install.sh | sh`
     - Supports configuration arguments for automated setup with AI Assistant
   - Example: `| sh -s -- --user USER --domain DOMAIN --pin PIN --claude-api-key KEY --agentic-mode auto`
   - **Linux**: APT repository (Debian/Ubuntu/Raspbian), Alpine APK, or direct binary download
@@ -223,9 +223,21 @@ See **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api
 
 **OEM Licensing**: EDAMAME Core is available for OEM integration into third‑party products. Contact [EDAMAME Technologies](https://www.edamame.tech) for licensing inquiries.
 
+## Agent Runtime Security
+
+EDAMAME provides runtime behavioral monitoring for AI coding agents and developer IDEs through the two-plane security model:
+
+| Repository | Description |
+|------------|-------------|
+| **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)** | Runtime behavioral monitoring for Cursor IDE on developer workstations. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security. |
+| **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)** | MCP plugin and skills for OpenClaw agents. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime. |
+| **[Agent Security (Research)](https://github.com/edamametechnologies/agent_security)** | Research paper and publication artifacts for *"Runtime Security for Agentic Systems: A Practical Two-Plane Approach"* (arXiv preprint, forthcoming). |
+
 ## Key Open Source Components
 
 EDAMAME maintains several open source projects that power the platform and can be used independently:
+- **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)**: Runtime behavioral monitoring for Cursor IDE on developer workstations. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security.
+- **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)**: MCP plugin and skills for OpenClaw agents. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime.
 - **[Threat Models](https://github.com/edamametechnologies/threatmodels)**: Public repository of security benchmarks, policies, whitelists/blacklists, and signatures used by the platform. See **[Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)**.
 - **[Flodbadd](https://github.com/edamametechnologies/flodbadd)**: Network visibility engine for packet capture, session analysis, whitelists/blacklists, and on‑device anomaly detection. An example tool using it is **[Flodviddar](https://github.com/edamametechnologies/flodviddar)**.
 - **[Undeadlock](https://github.com/edamametechnologies/undeadlock)**: Low‑overhead diagnostics for async locks and maps to surface contention/deadlocks during development.
@@ -244,4 +256,4 @@ Our closed source EDAMAME Core (Rust) -- see **[EDAMAME Core API](https://github
 The CLI wrappers for edamame_core are fully open source:
 - **[GitHub Action](https://github.com/edamametechnologies/edamame_posture_action)** / **[GitLab Action](https://gitlab.com/edamametechnologies/edamame_posture_action)**: CI/CD integrations to enforce posture and network controls in pipelines.
 - **[EDAMAME CLI](https://github.com/edamametechnologies/edamame_cli)**: Developer‑friendly interface to EDAMAME core services with interactive RPC exploration. Available via APT (Debian/Ubuntu), APK (Alpine), Homebrew (macOS), Chocolatey (Windows), or direct binary download.
-- **[EDAMAME Posture CLI](https://github.com/edamametechnologies/edamame_posture_cli)**: Cross‑platform CLI to assess posture, remediate issues, enforce policies, and generate compliance reports. Available via APT (Debian/Ubuntu), APK (Alpine), Homebrew (macOS), Chocolatey (Windows), or direct binary download.
+- **[EDAMAME Posture](https://github.com/edamametechnologies/edamame_posture)**: Cross‑platform CLI to assess posture, remediate issues, enforce policies, and generate compliance reports. Available via APT (Debian/Ubuntu), APK (Alpine), Homebrew (macOS), Chocolatey (Windows), or direct binary download.
