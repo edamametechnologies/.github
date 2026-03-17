@@ -229,15 +229,17 @@ EDAMAME provides runtime behavioral monitoring for AI coding agents and develope
 
 | Repository | Description |
 |------------|-------------|
-| **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)** | Runtime behavioral monitoring for Cursor IDE on developer workstations. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)** | MCP plugin and skills for OpenClaw agents. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime. |
+| **[EDAMAME for Claude Code](https://github.com/edamametechnologies/edamame_claude_code)** | Runtime behavioral monitoring for Claude Code on developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Bridges Claude Code transcripts to EDAMAME's divergence engine for two-plane security. |
+| **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)** | Runtime behavioral monitoring for Cursor IDE on developer workstations. See repo README for Cursor Marketplace or manual install (pending marketplace publication). Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security. |
+| **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)** | MCP plugin and skills for OpenClaw agents. See repo README for plugin bundle and Lima VM provisioning. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime. |
 | **[Agent Security (Research)](https://github.com/edamametechnologies/agent_security)** | Research paper and publication artifacts for *"Runtime Security for Agentic Systems: A Practical Two-Plane Approach"* (arXiv preprint, forthcoming). |
 
 ## Key Open Source Components
 
 EDAMAME maintains several open source projects that power the platform and can be used independently:
-- **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)**: Runtime behavioral monitoring for Cursor IDE on developer workstations. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security.
-- **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)**: MCP plugin and skills for OpenClaw agents. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime.
+- **[EDAMAME for Claude Code](https://github.com/edamametechnologies/edamame_claude_code)**: Runtime behavioral monitoring for Claude Code on developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Bridges Claude Code transcripts to EDAMAME's divergence engine for two-plane security.
+- **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)**: Runtime behavioral monitoring for Cursor IDE on developer workstations. See repo README for Cursor Marketplace or manual install (pending marketplace publication). Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security.
+- **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)**: MCP plugin and skills for OpenClaw agents. See repo README for plugin bundle and Lima VM provisioning. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime.
 - **[Threat Models](https://github.com/edamametechnologies/threatmodels)**: Public repository of security benchmarks, policies, whitelists/blacklists, and signatures used by the platform. See **[Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)**.
 - **[Flodbadd](https://github.com/edamametechnologies/flodbadd)**: Network visibility engine for packet capture, session analysis, whitelists/blacklists, and on‑device anomaly detection. An example tool using it is **[Flodviddar](https://github.com/edamametechnologies/flodviddar)**.
 - **[Undeadlock](https://github.com/edamametechnologies/undeadlock)**: Low‑overhead diagnostics for async locks and maps to surface contention/deadlocks during development.
