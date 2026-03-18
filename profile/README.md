@@ -186,7 +186,7 @@ Enhance your organization's security posture with team-focused capabilities:
 Access the free plan of our SaaS service for enterprises, including a demo on a simulated domain: [EDAMAME Hub](https://hub.edamame.tech).
 Create your domain, verify it, and onboard your users through the Onboarding tab.
 
-<video src="https://github.com/edamametechnologies/.github/raw/main/profile/assets/dashboard-0326-1080p-2x.mp4" controls width="100%"></video>
+https://github.com/user-attachments/assets/9f841141-648f-40a4-a4a1-063150e72666
 
 ### User-up Security for Your AI Era SDLC
 
