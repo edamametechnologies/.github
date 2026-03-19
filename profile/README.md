@@ -45,6 +45,8 @@ Both agents can use **EDAMAME's managed LLM service** through the [EDAMAME Porta
 
 **Alternative Providers**: Both agents also support Claude (Anthropic), OpenAI, and Ollama (local) if you prefer bring-your-own LLM.
 
+**Documentation:** [EDAMAME Portal README](https://github.com/edamametechnologies/edamame_portal) | [Portal Wiki](https://github.com/edamametechnologies/edamame_portal/wiki)
+
 ## For Individual Developers
 
 ### EDAMAME Security App: Free
@@ -185,6 +187,8 @@ Enhance your organization's security posture with team-focused capabilities:
 ### Quickstart
 Access the free plan of our SaaS service for enterprises, including a demo on a simulated domain: [EDAMAME Hub](https://hub.edamame.tech).
 Create your domain, verify it, and onboard your users through the Onboarding tab.
+
+**Documentation:** [EDAMAME Hub README](https://github.com/edamametechnologies/edamame_hub) | [Hub Wiki](https://github.com/edamametechnologies/edamame_hub/wiki)
 
 https://github.com/user-attachments/assets/9f841141-648f-40a4-a4a1-063150e72666
 
