@@ -68,7 +68,9 @@ EDAMAME Security App is your all-in-one tool to secure, understand, and prove yo
 - **Certified Compliance Report Generation:** Contractors required to prove their device meets baseline security requirements (SOC 2 or ISO 27001) can generate a compliance report with a single click.
 - **Privacy-first management:** Connects to our no‑MDM platform ([edamame.tech](https://www.edamame.tech)), enabling continuous reporting of security posture and integration with access control to implement Zero Trust for code, secrets, and test data access.
 
-https://github.com/user-attachments/assets/4221b077-d6e3-4b2c-815f-3b3fd01a9ae7
+
+https://github.com/user-attachments/assets/dedfa4de-e5de-44e3-9e9a-201e96445977
+
 
 See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edamame_security)
 
