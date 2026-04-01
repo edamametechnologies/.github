@@ -4,18 +4,18 @@
 
 EDAMAME ensures every workstation, CI/CD runner, and coding agent accessing code, secrets, or sensitive test data is secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers—to safeguard the AI era SDLC without slowing down development.
 
-## EDAMAME Agents
+## Products
 
-**EDAMAME Agents** are AI-powered security assistants that continuously monitor, analyze, and protect your development environment:
+EDAMAME Security and EDAMAME Posture are AI-powered security tools that continuously monitor, analyze, and protect your development environment:
 
-| Agent | Form Factor | Target Environment |
-|-------|-------------|-------------------|
+| Product | Form Factor | Target Environment |
+|---------|-------------|-------------------|
 | **[EDAMAME Security App](https://github.com/edamametechnologies/edamame_security)** | Desktop/Mobile App | Developer workstations, personal devices |
 | **[EDAMAME Posture CLI](https://github.com/edamametechnologies/edamame_posture)** | CLI Tool | CI/CD pipelines, coding agents, servers, headless systems |
 
-### What Makes an Agent?
+### AI-Powered Security
 
-Both agents share the same core intelligence and operate autonomously:
+Both products share the same core intelligence and operate autonomously:
 
 ```
 OBSERVE  →  Continuous monitoring of threats, network, traffic, and identity
@@ -25,17 +25,17 @@ ACT      →  Remediate threats, dismiss false positives, update whitelists
 REPORT   →  Slack notifications, Hub dashboards, compliance reports
 ```
 
-**Key Principle**: Human-in-the-loop safety. Agents escalate risky decisions and all actions are reversible.
+**Key Principle**: Human-in-the-loop safety. Risky decisions are escalated and all actions are reversible.
 
 ### EDAMAME Portal & Shared LLM Subscription
 
-Both agents can use **EDAMAME's managed LLM service** through the [EDAMAME Portal](https://portal.edamame.tech), eliminating the need for separate API keys:
+Both products can use **EDAMAME's managed LLM service** through the [EDAMAME Portal](https://portal.edamame.tech), eliminating the need for separate API keys:
 
 | Feature | Description |
 |---------|-------------|
-| **Unified Account** | Single login for both Security and Posture agents |
+| **Unified Account** | Single login for both Security and Posture |
 | **Managed LLM** | No third-party API keys needed |
-| **Usage Dashboard** | Track LLM usage across all your agents |
+| **Usage Dashboard** | Track LLM usage across all your devices and pipelines |
 | **Subscription Tiers** | Free tier included; paid plans for higher limits |
 | **API Keys** | Generate keys for headless/CI environments |
 
@@ -43,7 +43,7 @@ Both agents can use **EDAMAME's managed LLM service** through the [EDAMAME Porta
 - **EDAMAME Security (GUI)**: OAuth sign-in via "Sign in to Cloud LLM"
 - **EDAMAME Posture (CLI)**: API key via `EDAMAME_LLM_API_KEY` environment variable
 
-**Alternative Providers**: Both agents also support Claude (Anthropic), OpenAI, and Ollama (local) if you prefer bring-your-own LLM.
+**Alternative Providers**: Both products also support Claude (Anthropic), OpenAI, and Ollama (local) if you prefer bring-your-own LLM.
 
 **Documentation:** [EDAMAME Portal README](https://github.com/edamametechnologies/edamame_portal) | [Portal Wiki](https://github.com/edamametechnologies/edamame_portal/wiki)
 
@@ -92,7 +92,7 @@ Protect your CI/CD pipelines, coding agents, and personal repositories with powe
 
 - **Installation Methods:**
   - **Linux quick install**: `curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/edamametechnologies/edamame_posture/main/install.sh | sh`
-    - Supports configuration arguments for automated setup with AI Assistant
+  - Supports configuration arguments for automated setup with AI Assistant
   - Example: `| sh -s -- --user USER --domain DOMAIN --pin PIN --claude-api-key KEY --agentic-mode auto`
   - **Linux**: APT repository (Debian/Ubuntu/Raspbian), Alpine APK, or direct binary download
   - **macOS**: Homebrew (`brew install edamame-posture`) or direct binary download
@@ -101,23 +101,23 @@ Protect your CI/CD pipelines, coding agents, and personal repositories with powe
 #### Key Security Use Cases
 
 1. **Runner & Coding Agent Hardening**
-   - Automatically scan for vulnerabilities and misconfigurations in your CI/CD and coding agent environment
-   - Enforce minimum security scores on runners before allowing builds to proceed
-   - Apply automatic remediations to fix common security issues in ephemeral environments
-   - Let coding agents self-monitor via [MCP integration](https://www.edamame.tech/agents)
-   - Example: `edamame_posture check-policy 2.0 "encrypted disk disabled,critical vulnerability" "SOC-2"`
+  - Automatically scan for vulnerabilities and misconfigurations in your CI/CD and coding agent environment
+  - Enforce minimum security scores on runners before allowing builds to proceed
+  - Apply automatic remediations to fix common security issues in ephemeral environments
+  - Let coding agents self-monitor via [MCP integration](https://www.edamame.tech/agents)
+  - Example: `edamame_posture check-policy 2.0 "encrypted disk disabled,critical vulnerability" "SOC-2"`
 
 2. **Egress traffic control & anomaly detection**
-   - Create whitelists based on normal build behavior to define allowed network connections
-   - Detect and block suspicious outbound connections that could indicate supply chain attacks
-   - Generate network audit trails for security verification and incident response
-   - Example: `edamame_posture background-start-disconnected --network-scan --packet-capture --whitelist github_ubuntu`
+  - Create whitelists based on normal build behavior to define allowed network connections
+  - Detect and block suspicious outbound connections that could indicate supply chain attacks
+  - Generate network audit trails for security verification and incident response
+  - Example: `edamame_posture background-start-disconnected --network-scan --packet-capture --whitelist github_ubuntu`
 
 3. **Pipeline Security Gates**
-   - Fail builds when security posture doesn't meet requirements, preventing insecure code deployment
-   - Verify that code commits originated from properly secured environments
-   - Ensure network traffic conforms to defined whitelists during the build process
-   - Example: `edamame_posture get-sessions` (returns non-zero exit code if whitelist is violated)
+  - Fail builds when security posture doesn't meet requirements, preventing insecure code deployment
+  - Verify that code commits originated from properly secured environments
+  - Ensure network traffic conforms to defined whitelists during the build process
+  - Example: `edamame_posture get-sessions` (returns non-zero exit code if whitelist is violated)
 
 Example GitHub Action for your personal repository:
 ```yaml
