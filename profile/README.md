@@ -1,21 +1,23 @@
 # Welcome to EDAMAME Technologies
 
-**Developer-First and Agent-First Endpoint Security and Access.** Zero Trust for the AI era software development lifecycle.
+**Developer-first and agent-first runtime security.** The SDLC trust layer for workstations, runners, build hosts, and coding agents.
 
-EDAMAME ensures every workstation, CI/CD runner, and coding agent accessing code, secrets, or sensitive test data is secured—without the challenges of traditional Unified Endpoint Management (MDM/UEM). Empower every stakeholder—from contractors to developers—to safeguard the AI era SDLC without slowing down development.
+EDAMAME continuously verifies identity, device posture, and context for every code interaction and build. Developers keep moving, leaders get proof, and the workstations, runners, and coding agents behind delivery stay protected without MDM/UEM lockdown or remote device control.
 
 ## Products
 
-EDAMAME Security and EDAMAME Posture are AI-powered security tools that continuously monitor, analyze, and protect your development environment:
+EDAMAME uses one trust layer across the SDLC, with specific product surfaces for workstations, CI/CD infrastructure, and fleet visibility:
 
 | Product | Form Factor | Target Environment |
 |---------|-------------|-------------------|
-| **[EDAMAME Security App](https://github.com/edamametechnologies/edamame_security)** | Desktop/Mobile App | Developer workstations, personal devices |
-| **[EDAMAME Posture CLI](https://github.com/edamametechnologies/edamame_posture)** | CLI Tool | CI/CD pipelines, coding agents, servers, headless systems |
+| **[EDAMAME Security](https://github.com/edamametechnologies/edamame_security)** | Desktop/mobile app | Developer workstations, personal devices, and local coding sessions |
+| **[EDAMAME Posture](https://github.com/edamametechnologies/edamame_posture)** | CLI | CI/CD runners, build hosts, self-hosted agent hosts, and headless systems |
+| **[EDAMAME Hub](https://hub.edamame.tech)** | SaaS dashboard | Fleet visibility, posture proof, compliance evidence, and posture-based access |
+| **[EDAMAME Portal](https://portal.edamame.tech)** | Account portal | Authentication, account access, and managed LLM subscription |
 
 ### AI-Powered Security
 
-Both products share the same core intelligence and operate autonomously:
+EDAMAME Security and EDAMAME Posture share the same core intelligence and operate autonomously:
 
 ```
 OBSERVE  →  Continuous monitoring of threats, network, traffic, and identity
@@ -29,7 +31,7 @@ REPORT   →  Slack notifications, Hub dashboards, compliance reports
 
 ### EDAMAME Portal & Shared LLM Subscription
 
-Both products can use **EDAMAME's managed LLM service** through the [EDAMAME Portal](https://portal.edamame.tech), eliminating the need for separate API keys:
+EDAMAME Security and EDAMAME Posture can use **EDAMAME's managed LLM service** through the [EDAMAME Portal](https://portal.edamame.tech), eliminating the need for separate API keys:
 
 | Feature | Description |
 |---------|-------------|
@@ -40,7 +42,7 @@ Both products can use **EDAMAME's managed LLM service** through the [EDAMAME Por
 | **API Keys** | Generate keys for headless/CI environments |
 
 **Authentication:**
-- **EDAMAME Security (GUI)**: OAuth sign-in via "Sign in to Cloud LLM"
+- **EDAMAME Security (GUI)**: OAuth sign-in through EDAMAME Portal
 - **EDAMAME Posture (CLI)**: API key via `EDAMAME_LLM_API_KEY` environment variable
 
 **Alternative Providers**: Both products also support Claude (Anthropic), OpenAI, and Ollama (local) if you prefer bring-your-own LLM.
@@ -49,13 +51,13 @@ Both products can use **EDAMAME's managed LLM service** through the [EDAMAME Por
 
 ## For Individual Developers
 
-### EDAMAME Security App: Free
+### EDAMAME Security: Free
 
-EDAMAME Security App is your all-in-one tool to secure, understand, and prove your dev workstation—from OS to network. It delivers:
+EDAMAME Security is your all-in-one tool to secure, understand, and prove your dev workstation, from OS to network. It delivers:
 
 - **Security Benchmarks:** Assess against standards like [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks), SOC 2, and ISO 27001
 - **AI Assistant (Agentic System):** Intelligent automation that analyzes and resolves security issues automatically with two operational modes: "Do It For Me" (fully automatic) and "Analyze & Recommend" (review before execution). Supports multiple LLM providers:
-  - **Cloud LLM (EDAMAME)** - Managed AI service with OAuth authentication via EDAMAME Portal; free and paying tiers (see [portal.edamame.tech](https://portal.edamame.tech)); zero API key management
+  - **EDAMAME Portal LLM** - Managed AI service with OAuth authentication via EDAMAME Portal; free and paying tiers (see [portal.edamame.tech](https://portal.edamame.tech)); zero API key management
   - **Claude (Anthropic)** - Detailed reasoning and nuanced security decisions (API key required)
   - **OpenAI (GPT)** - Fast responses and general-purpose analysis (API key required)
   - **Ollama (Local)** - Privacy-focused, runs entirely on your machine (no cloud dependency)
@@ -83,7 +85,7 @@ See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edama
 
 ### EDAMAME Posture: Free CLI
 
-Protect your CI/CD pipelines, coding agents, and personal repositories with powerful security tools:
+Protect your CI/CD runners, build hosts, self-hosted agent hosts, and personal repositories with powerful security tools:
 
 - **Available Tools:**
   - **CLI (EDAMAME Posture):** For Windows, macOS, or Linux ([GitHub](https://github.com/edamametechnologies/edamame_posture))
@@ -100,11 +102,11 @@ Protect your CI/CD pipelines, coding agents, and personal repositories with powe
 
 #### Key Security Use Cases
 
-1. **Runner & Coding Agent Hardening**
-  - Automatically scan for vulnerabilities and misconfigurations in your CI/CD and coding agent environment
+1. **Runner and Coding Agent Host Hardening**
+  - Automatically scan for vulnerabilities and misconfigurations in your CI/CD and self-hosted coding agent environments
   - Enforce minimum security scores on runners before allowing builds to proceed
   - Apply automatic remediations to fix common security issues in ephemeral environments
-  - Let coding agents self-monitor via [MCP integration](https://www.edamame.tech/agents)
+  - Let coding agents participate in runtime monitoring via [MCP integration](https://www.edamame.tech/agents)
   - Example: `edamame_posture check-policy 2.0 "encrypted disk disabled,critical vulnerability" "SOC-2"`
 
 2. **Egress traffic control & anomaly detection**
@@ -214,7 +216,7 @@ EDAMAME integrates with your existing security infrastructure:
 
 ## EDAMAME Core (Closed Source)
 
-EDAMAME Core is the central engine that powers both the EDAMAME Security application and the EDAMAME Posture CLI. While closed source, it provides the high‑performance primitives that underpin the platform:
+EDAMAME Core is the central engine that powers both EDAMAME Security and EDAMAME Posture. While closed source, it provides the high‑performance primitives that underpin the SDLC trust layer:
 
 - **Cross‑platform assessment engine**: Consistent posture evaluation across macOS, Windows, and Linux
 - **Threat detection & scoring**: Policy‑driven findings compiled into a unified security score
@@ -231,23 +233,23 @@ See **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api
 
 ## Agent Runtime Security
 
-EDAMAME provides runtime behavioral monitoring for AI coding agents and developer IDEs through the two-plane security model:
+EDAMAME provides runtime behavioral monitoring for AI coding agents and developer IDEs through named integrations on EDAMAME Security and EDAMAME Posture surfaces:
 
 | Repository | Description |
 |------------|-------------|
-| **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)** | Runtime behavioral monitoring for Cursor IDE on developer workstations. See repo README for Cursor Marketplace or manual install. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[EDAMAME for Claude Code](https://github.com/edamametechnologies/edamame_claude_code)** | Runtime behavioral monitoring for Claude Code on developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Bridges Claude Code transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[EDAMAME for Claude Desktop](https://github.com/edamametechnologies/edamame_claude_desktop)** | Runtime behavioral monitoring for Claude Desktop (Code-in-Desktop and Cowork modes). Install via EDAMAME app or `edamame-posture install-agent-plugin claude_desktop`. Bridges Claude Desktop transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)** | MCP plugin and skills for OpenClaw agents. See repo README for plugin bundle and Lima VM provisioning. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime. |
+| **[Cursor integration](https://github.com/edamametechnologies/edamame_cursor)** | Runtime behavioral monitoring for Cursor IDE on developer workstations. See repo README for Cursor Marketplace or manual install. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security. |
+| **[Claude Code integration](https://github.com/edamametechnologies/edamame_claude_code)** | Runtime behavioral monitoring for Claude Code on developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Bridges Claude Code transcripts to EDAMAME's divergence engine for two-plane security. |
+| **[Claude Desktop integration](https://github.com/edamametechnologies/edamame_claude_desktop)** | Runtime behavioral monitoring for Claude Desktop (Code-in-Desktop and Cowork modes). Install via EDAMAME Security or `edamame-posture install-agent-plugin claude_desktop`. Bridges Claude Desktop transcripts to EDAMAME's divergence engine for two-plane security. |
+| **[OpenClaw integration](https://github.com/edamametechnologies/edamame_openclaw)** | MCP plugin and skills for OpenClaw. See repo README for plugin bundle and Lima VM provisioning. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime. |
 | **[Agent Security (Research)](https://github.com/edamametechnologies/agent_security)** | Research paper and publication artifacts for *"Runtime Security for Agentic Systems: A Practical Two-Plane Approach"* (arXiv preprint, forthcoming). |
 
 ## Key Open Source Components
 
 EDAMAME maintains several open source projects that power the platform and can be used independently:
-- **[EDAMAME for Cursor](https://github.com/edamametechnologies/edamame_cursor)**: Runtime behavioral monitoring for Cursor IDE on developer workstations. See repo README for Cursor Marketplace or manual install. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security.
-- **[EDAMAME for Claude Code](https://github.com/edamametechnologies/edamame_claude_code)**: Runtime behavioral monitoring for Claude Code on developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Bridges Claude Code transcripts to EDAMAME's divergence engine for two-plane security.
-- **[EDAMAME for Claude Desktop](https://github.com/edamametechnologies/edamame_claude_desktop)**: Runtime behavioral monitoring for Claude Desktop (Code-in-Desktop and Cowork modes). Install via EDAMAME app or `edamame-posture install-agent-plugin claude_desktop`. Bridges Claude Desktop transcripts to EDAMAME's divergence engine for two-plane security.
-- **[EDAMAME for OpenClaw](https://github.com/edamametechnologies/edamame_openclaw)**: MCP plugin and skills for OpenClaw agents. See repo README for plugin bundle and Lima VM provisioning. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime.
+- **[Cursor integration](https://github.com/edamametechnologies/edamame_cursor)**: Runtime behavioral monitoring for Cursor IDE on developer workstations. See repo README for Cursor Marketplace or manual install. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security.
+- **[Claude Code integration](https://github.com/edamametechnologies/edamame_claude_code)**: Runtime behavioral monitoring for Claude Code on developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Bridges Claude Code transcripts to EDAMAME's divergence engine for two-plane security.
+- **[Claude Desktop integration](https://github.com/edamametechnologies/edamame_claude_desktop)**: Runtime behavioral monitoring for Claude Desktop (Code-in-Desktop and Cowork modes). Install via EDAMAME Security or `edamame-posture install-agent-plugin claude_desktop`. Bridges Claude Desktop transcripts to EDAMAME's divergence engine for two-plane security.
+- **[OpenClaw integration](https://github.com/edamametechnologies/edamame_openclaw)**: MCP plugin and skills for OpenClaw. See repo README for plugin bundle and Lima VM provisioning. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime.
 - **[Threat Models](https://github.com/edamametechnologies/threatmodels)**: Public repository of security benchmarks, policies, whitelists/blacklists, and signatures used by the platform. See **[Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)**.
 - **[Flodbadd](https://github.com/edamametechnologies/flodbadd)**: Network visibility engine for packet capture, session analysis, whitelists/blacklists, and on‑device anomaly detection. An example tool using it is **[Flodviddar](https://github.com/edamametechnologies/flodviddar)**.
 - **[Undeadlock](https://github.com/edamametechnologies/undeadlock)**: Low‑overhead diagnostics for async locks and maps to surface contention/deadlocks during development.
