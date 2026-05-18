@@ -194,7 +194,7 @@ Create your domain, verify it, and onboard your users through the Onboarding tab
 
 **Documentation:** [EDAMAME Hub README](https://github.com/edamametechnologies/edamame_hub) | [Hub Wiki](https://github.com/edamametechnologies/edamame_hub/wiki)
 
-https://github.com/user-attachments/assets/9f841141-648f-40a4-a4a1-063150e72666
+https://github.com/user-attachments/assets/9d2a5b22-bcff-4c2f-8ec9-b37aafd0466b
 
 ### User-up Security for Your AI Era SDLC
 
