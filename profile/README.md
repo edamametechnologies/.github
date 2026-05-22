@@ -68,10 +68,10 @@ EDAMAME Security is your all-in-one tool to secure, understand, and prove your d
 - **Network Visibility:** Built-in network scanning (inspired by 'Nmap') and traffic monitoring (inspired by 'Wireshark'). Anonymized, RAG‑based analysis of device vulnerabilities and suspicious traffic sessions; ML‑based traffic anomaly detection
 - **Digital Identity Management:** Integrated with [Have I Been Pwned](https://haveibeenpwned.com) for online identity management with AI analysis of security impact
 - **Certified Compliance Report Generation:** Contractors required to prove their device meets baseline security requirements (SOC 2 or ISO 27001) can generate a compliance report with a single click.
-- **Privacy-first management:** Connects to our no‑MDM platform ([edamame.tech](https://www.edamame.tech)), enabling continuous reporting of security posture and integration with access control to implement Zero Trust for code, secrets, and test data access.
+- **Privacy-first management:** Connects to our no‑MDM platform ([edamame.tech](https://www.edamame.tech)), enabling continuous reporting of security
 
 
-https://github.com/user-attachments/assets/dedfa4de-e5de-44e3-9e9a-201e96445977
+https://github.com/user-attachments/assets/f29ae085-0ef9-4902-a27d-04d3239561d9
 
 
 See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edamame_security)
