@@ -11,7 +11,7 @@ assignees: ''
 
 ## Who is this feature for ?
 - EDAMAME Security App user
-- EDAMAME Dashboard user (CISO)
+- EDAMAME Hub user (CISO)
 - EDAMAME Developer
   
 _Please remove the irrelevant categories._

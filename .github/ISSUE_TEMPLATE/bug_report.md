@@ -11,7 +11,8 @@ assignees: ''
 
 ## Impacted system
 - EDAMAME Security App
-- EDAMAME Dashboard
+- EDAMAME Posture CLI
+- EDAMAME Hub
 - EDAMAME integrations
   
 __Please remove the irrelevant categories.__
