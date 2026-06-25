@@ -74,7 +74,7 @@ EDAMAME Security is your all-in-one tool to secure, understand, and prove your d
 https://github.com/user-attachments/assets/f29ae085-0ef9-4902-a27d-04d3239561d9
 
 
-See: [EDAMAME Security Public Repo](https://github.com/edamametechnologies/edamame_security)
+**Documentation:** [EDAMAME Security README](https://github.com/edamametechnologies/edamame_security) | [Security Wiki](https://github.com/edamametechnologies/edamame_security/wiki)
 
 ### Security Without Undermining Productivity
 
