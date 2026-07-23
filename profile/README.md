@@ -1,6 +1,6 @@
 # Welcome to EDAMAME Technologies
 
-**Developer-first and agent-first runtime security.** The SDLC trust layer for workstations, runners, build hosts, and coding agents.
+**Developer-first and agent-first runtime security.** The Trust Layer for workstations, runners, build hosts, and coding agents.
 
 EDAMAME continuously verifies identity, device posture, and context for every code interaction and build. Developers keep moving, leaders get proof, and the workstations, runners, and coding agents behind delivery stay protected without MDM/UEM lockdown or remote device control.
 
@@ -216,7 +216,7 @@ EDAMAME integrates with your existing security infrastructure:
 
 ## EDAMAME Core (Closed Source)
 
-EDAMAME Core is the central engine that powers both EDAMAME Security and EDAMAME Posture. While closed source, it provides the high-performance primitives that underpin the SDLC trust layer:
+EDAMAME Core is the central engine that powers both EDAMAME Security and EDAMAME Posture. While closed source, it provides the high-performance primitives that underpin the Trust Layer:
 
 - **Cross-platform assessment engine**: Consistent posture evaluation across macOS, Windows, and Linux
 - **Threat detection & scoring**: Policy-driven findings compiled into a unified security score
@@ -233,22 +233,22 @@ See **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api
 
 ## Agent Runtime Security
 
-EDAMAME provides runtime behavioral monitoring for AI coding agents and developer IDEs through named integrations on EDAMAME Security and EDAMAME Posture surfaces:
+EDAMAME Security monitors AI coding agents **automatically**: its host-side transcript observer runs two-plane divergence detection against any supported agent the moment it is discovered on disk, with **no plugin installed**, and a compromised agent cannot pause or silence it. The named integrations below are **optional and additive**; they extend that coverage off-host (remote, SSH, container, CI, VM) and add in-agent onboarding, read-only posture and verdict views, and (going forward) pre-execution tool-call enforcement:
 
 | Repository | Description |
 |------------|-------------|
-| **[Cursor integration](https://github.com/edamametechnologies/edamame_cursor)** | Runtime behavioral monitoring for Cursor IDE on developer workstations. See repo README for Cursor Marketplace or manual install. Bridges Cursor transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[Claude Code integration](https://github.com/edamametechnologies/edamame_claude_code)** | Runtime behavioral monitoring for Claude Code on developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Bridges Claude Code transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[Claude Desktop integration](https://github.com/edamametechnologies/edamame_claude_desktop)** | Runtime behavioral monitoring for Claude Desktop (Code-in-Desktop and Cowork modes). Install via EDAMAME Security or `edamame-posture install-agent-plugin claude_desktop`. Bridges Claude Desktop transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[OpenClaw integration](https://github.com/edamametechnologies/edamame_openclaw)** | MCP plugin and skills for OpenClaw. See repo README for plugin bundle and Lima VM provisioning. Enables behavioral model publishing and posture monitoring through the OpenClaw runtime. |
-| **[Codex integration](https://github.com/edamametechnologies/edamame_codex)** | Runtime behavioral monitoring for the OpenAI Codex CLI on developer workstations. Install via EDAMAME Security or `edamame-posture install-agent-plugin codex`. Bridges Codex CLI transcripts to EDAMAME's divergence engine for two-plane security. |
-| **[Hermes integration](https://github.com/edamametechnologies/edamame_hermes)** | Runtime behavioral monitoring for Nous Research's Hermes Agent on developer workstations. Install via EDAMAME Security or `edamame-posture install-agent-plugin hermes`. Bridges Hermes transcripts to EDAMAME's divergence engine for two-plane security. |
+| **[Cursor integration](https://github.com/edamametechnologies/edamame_cursor)** | Optional Cursor IDE integration for developer workstations. See repo README for Cursor Marketplace or manual install. Adds off-host coverage plus in-agent posture and divergence verdicts; the host-side observer already monitors an on-disk Cursor with no plugin installed. |
+| **[Claude Code integration](https://github.com/edamametechnologies/edamame_claude_code)** | Optional Claude Code integration for developer workstations. Easy install: `/plugin marketplace add edamametechnologies/edamame_claude_code` then `/plugin install edamame@edamame-security`. Adds off-host coverage plus in-agent posture and divergence verdicts; the host-side observer already monitors an on-disk Claude Code with no plugin installed. |
+| **[Claude Desktop integration](https://github.com/edamametechnologies/edamame_claude_desktop)** | Optional Claude Desktop integration (Code-in-Desktop and Cowork modes). Install via EDAMAME Security or `edamame-posture install-agent-plugin claude_desktop`. Adds off-host coverage plus in-agent posture and divergence verdicts; the host-side observer already monitors an on-disk Claude Desktop with no plugin installed. |
+| **[OpenClaw integration](https://github.com/edamametechnologies/edamame_openclaw)** | Optional MCP plugin and skills for OpenClaw. See repo README for plugin bundle and Lima VM provisioning. Adds off-host / VM coverage and in-agent posture through the OpenClaw runtime; the host-side observer already monitors on-disk OpenClaw installs with no plugin installed. |
+| **[Codex integration](https://github.com/edamametechnologies/edamame_codex)** | Optional OpenAI Codex CLI integration for developer workstations. Install via EDAMAME Security or `edamame-posture install-agent-plugin codex`. Adds off-host coverage plus in-agent posture and divergence verdicts; the host-side observer already monitors an on-disk Codex CLI with no plugin installed. |
+| **[Hermes integration](https://github.com/edamametechnologies/edamame_hermes)** | Optional Nous Research Hermes Agent integration for developer workstations. Install via EDAMAME Security or `edamame-posture install-agent-plugin hermes`. Adds off-host coverage (including the SQLite+FTS5 store) plus in-agent posture and divergence verdicts; the host-side observer already monitors on-disk Hermes installs with no plugin installed. |
 | **[Agent Security (Research)](https://github.com/edamametechnologies/agent_security)** | Research paper and publication artifacts for *"Runtime Security for Agentic Systems: A Practical Two-Plane Approach"* (arXiv preprint, forthcoming). |
 
 ## Key Open Source Components
 
 EDAMAME maintains several open source projects that power the platform and can be used independently:
-- **Agent integrations** (Cursor, Claude Code, Claude Desktop, OpenClaw, Codex, Hermes): Open source runtime behavioral monitoring packages that bridge each agent's transcripts to EDAMAME's divergence engine for two-plane security. See [Agent Runtime Security](#agent-runtime-security) above for repos and install paths.
+- **Agent integrations** (Cursor, Claude Code, Claude Desktop, OpenClaw, Codex, Hermes): Optional, open source packages that extend EDAMAME's host-side observer off-host and add in-agent onboarding, read-only posture and verdict views, and pre-execution tool-call enforcement. The observer itself monitors on-disk agents with no plugin installed. See [Agent Runtime Security](#agent-runtime-security) above for repos and install paths.
 - **[Threat Models](https://github.com/edamametechnologies/threatmodels)**: Public repository of security benchmarks, policies, whitelists/blacklists, and signatures used by the platform. See **[Threat Models Wiki](https://github.com/edamametechnologies/threatmodels/wiki)**.
 - **[Flodbadd](https://github.com/edamametechnologies/flodbadd)**: Network visibility engine for packet capture, session analysis, whitelists/blacklists, and on-device anomaly detection. An example tool using it is **[Flodviddar](https://github.com/edamametechnologies/flodviddar)**.
 - **[Undeadlock](https://github.com/edamametechnologies/undeadlock)**: Low-overhead diagnostics for async locks and maps to surface contention/deadlocks during development.
