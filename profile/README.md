@@ -196,6 +196,10 @@ Create your domain, verify it, and onboard your users through the Onboarding tab
 
 https://github.com/user-attachments/assets/9d2a5b22-bcff-4c2f-8ec9-b37aafd0466b
 
+### Fleet Deployment Through Your MDM
+
+Already running an MDM? Use it as the delivery channel: [auto_provisioning](https://github.com/edamametechnologies/auto_provisioning) has scripts, configuration profiles and guides (Intune, ConfigMgr, Jamf, Kandji, Mosyle, Workspace ONE, Ansible) that install EDAMAME Posture or the EDAMAME Security app with Hub enrollment and LLM settings preconfigured. The MDM only delivers and configures EDAMAME; EDAMAME itself never takes control of the device.
+
 ### User-up Security for Your AI Era SDLC
 
 EDAMAME's "reporting-only" architecture prevents remote control of endpoints, reducing legal and privacy liabilities while building trust and shared responsibility:
