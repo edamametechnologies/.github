@@ -82,7 +82,7 @@ jobs:
           API: ${{ github.api_url }}
         shell: python3 {0}
         run: |
-          import json, os, urllib.parse, urllib.request
+          import json, os, urllib.error, urllib.parse, urllib.request
 
           env = os.environ.get
           needs = json.loads(env("RESULTS") or "{}")
@@ -95,9 +95,13 @@ jobs:
 
           def api(path):
               req = urllib.request.Request(f"{env('API')}{path}", headers={
-                  "Authorization": f"Bearer {env('GH_TOKEN')}", "Accept": "application/vnd.github+json"})
-              with urllib.request.urlopen(req, timeout=20) as r:
-                  return json.loads(r.read())
+                  "Authorization": f"Bearer {env('GH_TOKEN')}", "Accept": "application/vnd.github+json",
+                  "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "edamame-slack-notify"})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      return json.loads(r.read())
+              except urllib.error.HTTPError as e:
+                  raise RuntimeError(f"{e.code} on {path}: {e.read()[:200]!r}") from None
 
           def previous_failed():
               """The conclusion of the previous completed run of this workflow on this branch."""
