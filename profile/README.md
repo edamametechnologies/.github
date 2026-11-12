@@ -250,7 +250,7 @@ See **[EDAMAME Core API](https://github.com/edamametechnologies/edamame_core_api
 
 EDAMAME Security monitors AI agents **automatically**: its host-side transcript observer runs two-plane divergence detection against any supported agent the moment it is discovered on disk, with **no plugin installed**, and a compromised agent cannot pause or silence it. The named integrations below are **optional and additive**; they extend that coverage off-host (remote, SSH, container, CI, VM) and add in-agent onboarding and read-only posture and verdict views.
 
-Watch: [Did your AI agent do what it said? Divergence](https://youtu.be/lDenRwA_8dY) · [What can your AI agents reach? Exposure](https://youtu.be/nyZ-QQLXsy8) · real attacks on AI agents, caught from outside the agent, in the [Attack Simulator playlist](https://www.youtube.com/playlist?list=PLO8OBTXPWuyc)
+Watch: [Did your AI agent do what it said? Divergence](https://youtu.be/lDenRwA_8dY) · [What can your AI agents reach? Exposure](https://youtu.be/nyZ-QQLXsy8) · attacks on AI agents, replayed by the Attack Simulator and caught from outside the agent, in the [Attack Simulator playlist](https://www.youtube.com/playlist?list=PLO8OBTXPWuyc)
 
 
 | Repository | Description |
