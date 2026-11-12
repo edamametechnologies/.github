@@ -6,9 +6,6 @@ name: Slack notify
 #   notify:
 #     needs: [build, test]
 #     if: always() && github.event_name != 'pull_request'
-#     permissions:
-#       actions: read
-#       contents: read
 #     uses: edamametechnologies/.github/.github/workflows/slack-notify.yml@main
 #     with:
 #       results: ${{ toJSON(needs) }}
@@ -17,14 +14,19 @@ name: Slack notify
 # Modes:
 # - on-change (default): a message when the workflow breaks on a branch, and
 #   one when it is fixed; nothing while it stays green, nothing while it stays
-#   red. The previous completed run of the same workflow on the same branch
-#   (pull request runs aside) decides.
+#   red.
 # - every-failure: a message on every failed run, never on success. For
 #   releases and deploys, where every failure needs someone.
 #
 # Never posts for pull requests (their author sees the check on GitHub), nor
-# for a run whose jobs were only cancelled or skipped. SLACK_BOT_TOKEN is the
-# organization secret; `secrets: inherit` passes it.
+# for a run whose jobs were only cancelled or skipped.
+#
+# Whether the previous run on the branch was red travels through the Actions
+# cache: the organization's IP allow list refuses GitHub API calls from
+# GitHub-hosted runners, the cache service is not affected. A cache unused for
+# 7 days expires; the next failure then posts again.
+#
+# SLACK_BOT_TOKEN is the organization secret; `secrets: inherit` passes it.
 
 on:
   workflow_call:
@@ -60,9 +62,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
-      actions: read
       contents: read
     steps:
+      - name: Name the state of this workflow on this branch
+        id: key
+        env:
+          WORKFLOW: ${{ github.workflow }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          prefix="slack-notify-$(printf '%s-%s' "$WORKFLOW" "$BRANCH" | tr -c 'A-Za-z0-9._-' '_')-"
+          echo "prefix=$prefix" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the previous state
+        if: inputs.mode == 'on-change'
+        uses: actions/cache/restore@v4
+        with:
+          path: .slack-notify-state
+          key: ${{ steps.key.outputs.prefix }}${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ${{ steps.key.outputs.prefix }}
+
       - name: Post if the run broke or fixed something
         env:
           RESULTS: ${{ inputs.results }}
@@ -71,7 +89,6 @@ jobs:
           TITLE: ${{ inputs.title }}
           DRY_RUN: ${{ inputs.dry_run }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
           RUN_ID: ${{ github.run_id }}
           BRANCH: ${{ github.ref_name }}
@@ -79,69 +96,43 @@ jobs:
           EVENT: ${{ github.event_name }}
           ACTOR: ${{ github.actor }}
           SERVER: ${{ github.server_url }}
-          API: ${{ github.api_url }}
         shell: python3 {0}
         run: |
-          import json, os, urllib.error, urllib.parse, urllib.request
+          import json, os, urllib.request
 
           env = os.environ.get
+          STATE = ".slack-notify-state"
           needs = json.loads(env("RESULTS") or "{}")
           failed = sorted(j for j, v in needs.items() if v.get("result") == "failure")
           results = {v.get("result") for v in needs.values()}
           run_url = f"{env('SERVER')}/{env('REPO')}/actions/runs/{env('RUN_ID')}"
-          name = env("TITLE") or env("WORKFLOW")
-          where = f"*{env('REPO').split('/')[1]} · {name}*"
+          where = f"*{env('REPO').split('/')[1]} · {env('TITLE') or env('WORKFLOW')}*"
           branch = env("BRANCH")
 
-          def api(path):
-              req = urllib.request.Request(f"{env('API')}{path}", headers={
-                  "Authorization": f"Bearer {env('GH_TOKEN')}", "Accept": "application/vnd.github+json",
-                  "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "edamame-slack-notify"})
-              try:
-                  with urllib.request.urlopen(req, timeout=20) as r:
-                      return json.loads(r.read())
-              except urllib.error.HTTPError as e:
-                  raise RuntimeError(f"{e.code} on {path}: {e.read()[:200]!r}") from None
-
-          def previous_failed():
-              """The conclusion of the previous completed run of this workflow on this branch."""
-              run = api(f"/repos/{env('REPO')}/actions/runs/{env('RUN_ID')}")
-              q = urllib.parse.urlencode({"branch": branch, "status": "completed", "per_page": 20})
-              runs = api(f"/repos/{env('REPO')}/actions/workflows/{run['workflow_id']}/runs?{q}")["workflow_runs"]
-              for r in runs:
-                  if r["id"] == run["id"] or r["event"] in ("pull_request", "pull_request_target"):
-                      continue
-                  if r["conclusion"] in ("cancelled", "skipped", "neutral"):
-                      continue
-                  return r["conclusion"] in ("failure", "timed_out", "startup_failure", "action_required")
-              return False  # no history: treat as green
+          was_red = False
+          if os.path.exists(STATE):
+              with open(STATE) as f:
+                  was_red = json.load(f).get("red", False)
 
           message = None
           if failed:
               shown = ", ".join(failed[:6]) + (f" and {len(failed) - 6} more" if len(failed) > 6 else "")
-              broke = f":x: {where} failed on `{branch}` ({env('EVENT')}, {env('ACTOR')}): {shown}. <{run_url}|Run>"
-              if env("MODE") == "every-failure":
-                  message = broke
+              if env("MODE") == "every-failure" or not was_red:
+                  message = f":x: {where} failed on `{branch}` ({env('EVENT')}, {env('ACTOR')}): {shown}. <{run_url}|Run>"
               else:
-                  try:
-                      message = None if previous_failed() else broke
-                  except Exception as e:  # never lose an alert because the history could not be read
-                      print(f"::warning::Could not read the previous run ({e}); posting.")
-                      message = broke
-          elif results <= {"cancelled", "skipped"}:
+                  print(f"Still failing ({shown}), already reported.")
+          elif results and results <= {"cancelled", "skipped"}:
               print("Only cancelled or skipped jobs: nothing to report.")
-          elif env("MODE") != "every-failure":
-              try:
-                  if previous_failed():
-                      message = f":white_check_mark: {where} is fixed on `{branch}`. <{run_url}|Run>"
-              except Exception as e:
-                  print(f"::warning::Could not read the previous run ({e}); no recovery message.")
+          elif was_red and env("MODE") != "every-failure":
+              message = f":white_check_mark: {where} is fixed on `{branch}`. <{run_url}|Run>"
 
+          posted = True
           if not message:
               print("Nothing to post.")
           elif env("DRY_RUN") == "true":
               print("Would post to", env("CHANNEL"), ":", message)
           elif not env("SLACK_BOT_TOKEN"):
+              posted = False
               print("::warning::SLACK_BOT_TOKEN is not available (pass `secrets: inherit`). Message: " + message)
           else:
               req = urllib.request.Request("https://slack.com/api/chat.postMessage",
@@ -149,6 +140,18 @@ jobs:
                   headers={"Authorization": f"Bearer {env('SLACK_BOT_TOKEN')}", "Content-Type": "application/json; charset=utf-8"})
               with urllib.request.urlopen(req, timeout=20) as r:
                   answer = json.loads(r.read())
-              if not answer.get("ok"):
-                  raise SystemExit(f"Slack refused the message: {answer.get('error')}")
-              print("Posted:", message)
+              posted = bool(answer.get("ok"))
+              print("Posted:" if posted else f"::warning::Slack refused the message ({answer.get('error')}):", message)
+
+          # The state moves only on a conclusive run, and only once its message is out,
+          # so an alert that could not be posted is tried again next time.
+          if (failed or not (results <= {"cancelled", "skipped"})) and posted:
+              with open(STATE, "w") as f:
+                  json.dump({"red": bool(failed)}, f)
+
+      - name: Save the state
+        if: inputs.mode == 'on-change' && hashFiles('.slack-notify-state') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .slack-notify-state
+          key: ${{ steps.key.outputs.prefix }}${{ github.run_id }}-${{ github.run_attempt }}
