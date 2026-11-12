@@ -1,0 +1,150 @@
+name: Slack notify
+
+# One Slack message per workflow run, only when it matters. Call it as the
+# last job of a workflow, after the jobs to report on:
+#
+#   notify:
+#     needs: [build, test]
+#     if: always() && github.event_name != 'pull_request'
+#     permissions:
+#       actions: read
+#       contents: read
+#     uses: edamametechnologies/.github/.github/workflows/slack-notify.yml@main
+#     with:
+#       results: ${{ toJSON(needs) }}
+#     secrets: inherit
+#
+# Modes:
+# - on-change (default): a message when the workflow breaks on a branch, and
+#   one when it is fixed; nothing while it stays green, nothing while it stays
+#   red. The previous completed run of the same workflow on the same branch
+#   (pull request runs aside) decides.
+# - every-failure: a message on every failed run, never on success. For
+#   releases and deploys, where every failure needs someone.
+#
+# Never posts for pull requests (their author sees the check on GitHub), nor
+# for a run whose jobs were only cancelled or skipped. SLACK_BOT_TOKEN is the
+# organization secret; `secrets: inherit` passes it.
+
+on:
+  workflow_call:
+    inputs:
+      results:
+        description: "toJSON(needs) of the calling job: the jobs to report on"
+        type: string
+        required: true
+      mode:
+        description: "on-change (broke / fixed) or every-failure"
+        type: string
+        default: on-change
+      channel:
+        description: "Slack channel ID (default: #qa-alerts)"
+        type: string
+        default: C072J0U9TH7
+      title:
+        description: "Name shown in the message (default: the workflow's name)"
+        type: string
+        default: ""
+      dry_run:
+        description: "Print the message instead of posting it"
+        type: boolean
+        default: false
+    secrets:
+      SLACK_BOT_TOKEN:
+        required: false
+
+jobs:
+  notify:
+    name: Slack
+    if: github.event_name != 'pull_request' && github.event_name != 'pull_request_target'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - name: Post if the run broke or fixed something
+        env:
+          RESULTS: ${{ inputs.results }}
+          MODE: ${{ inputs.mode }}
+          CHANNEL: ${{ inputs.channel }}
+          TITLE: ${{ inputs.title }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          BRANCH: ${{ github.ref_name }}
+          WORKFLOW: ${{ github.workflow }}
+          EVENT: ${{ github.event_name }}
+          ACTOR: ${{ github.actor }}
+          SERVER: ${{ github.server_url }}
+          API: ${{ github.api_url }}
+        shell: python3 {0}
+        run: |
+          import json, os, urllib.parse, urllib.request
+
+          env = os.environ.get
+          needs = json.loads(env("RESULTS") or "{}")
+          failed = sorted(j for j, v in needs.items() if v.get("result") == "failure")
+          results = {v.get("result") for v in needs.values()}
+          run_url = f"{env('SERVER')}/{env('REPO')}/actions/runs/{env('RUN_ID')}"
+          name = env("TITLE") or env("WORKFLOW")
+          where = f"*{env('REPO').split('/')[1]} · {name}*"
+          branch = env("BRANCH")
+
+          def api(path):
+              req = urllib.request.Request(f"{env('API')}{path}", headers={
+                  "Authorization": f"Bearer {env('GH_TOKEN')}", "Accept": "application/vnd.github+json"})
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  return json.loads(r.read())
+
+          def previous_failed():
+              """The conclusion of the previous completed run of this workflow on this branch."""
+              run = api(f"/repos/{env('REPO')}/actions/runs/{env('RUN_ID')}")
+              q = urllib.parse.urlencode({"branch": branch, "status": "completed", "per_page": 20})
+              runs = api(f"/repos/{env('REPO')}/actions/workflows/{run['workflow_id']}/runs?{q}")["workflow_runs"]
+              for r in runs:
+                  if r["id"] == run["id"] or r["event"] in ("pull_request", "pull_request_target"):
+                      continue
+                  if r["conclusion"] in ("cancelled", "skipped", "neutral"):
+                      continue
+                  return r["conclusion"] in ("failure", "timed_out", "startup_failure", "action_required")
+              return False  # no history: treat as green
+
+          message = None
+          if failed:
+              shown = ", ".join(failed[:6]) + (f" and {len(failed) - 6} more" if len(failed) > 6 else "")
+              broke = f":x: {where} failed on `{branch}` ({env('EVENT')}, {env('ACTOR')}): {shown}. <{run_url}|Run>"
+              if env("MODE") == "every-failure":
+                  message = broke
+              else:
+                  try:
+                      message = None if previous_failed() else broke
+                  except Exception as e:  # never lose an alert because the history could not be read
+                      print(f"::warning::Could not read the previous run ({e}); posting.")
+                      message = broke
+          elif results <= {"cancelled", "skipped"}:
+              print("Only cancelled or skipped jobs: nothing to report.")
+          elif env("MODE") != "every-failure":
+              try:
+                  if previous_failed():
+                      message = f":white_check_mark: {where} is fixed on `{branch}`. <{run_url}|Run>"
+              except Exception as e:
+                  print(f"::warning::Could not read the previous run ({e}); no recovery message.")
+
+          if not message:
+              print("Nothing to post.")
+          elif env("DRY_RUN") == "true":
+              print("Would post to", env("CHANNEL"), ":", message)
+          elif not env("SLACK_BOT_TOKEN"):
+              print("::warning::SLACK_BOT_TOKEN is not available (pass `secrets: inherit`). Message: " + message)
+          else:
+              req = urllib.request.Request("https://slack.com/api/chat.postMessage",
+                  data=json.dumps({"channel": env("CHANNEL"), "text": message, "unfurl_links": False}).encode(),
+                  headers={"Authorization": f"Bearer {env('SLACK_BOT_TOKEN')}", "Content-Type": "application/json; charset=utf-8"})
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  answer = json.loads(r.read())
+              if not answer.get("ok"):
+                  raise SystemExit(f"Slack refused the message: {answer.get('error')}")
+              print("Posted:", message)
