@@ -27,6 +27,8 @@ name: Slack notify
 # 7 days expires; the next failure then posts again.
 #
 # SLACK_BOT_TOKEN is the organization secret; `secrets: inherit` passes it.
+# The channel is the SLACK_ALERTS_CHANNEL organization variable (#qa-alerts
+# until it is set).
 
 on:
   workflow_call:
@@ -40,9 +42,9 @@ on:
         type: string
         default: on-change
       channel:
-        description: "Slack channel ID (default: #qa-alerts)"
+        description: "Slack channel ID (default: the SLACK_ALERTS_CHANNEL organization variable)"
         type: string
-        default: C072J0U9TH7
+        default: ""
       title:
         description: "Name shown in the message (default: the workflow's name)"
         type: string
@@ -85,7 +87,9 @@ jobs:
         env:
           RESULTS: ${{ inputs.results }}
           MODE: ${{ inputs.mode }}
-          CHANNEL: ${{ inputs.channel }}
+          # The alerts channel is an organization variable, so changing the channel is one
+          # setting for every repository. #qa-alerts until the variable exists.
+          CHANNEL: ${{ inputs.channel || vars.SLACK_ALERTS_CHANNEL || 'C072J0U9TH7' }}
           TITLE: ${{ inputs.title }}
           DRY_RUN: ${{ inputs.dry_run }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
