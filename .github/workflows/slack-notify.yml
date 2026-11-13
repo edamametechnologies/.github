@@ -9,7 +9,8 @@ name: Slack notify
 #     uses: edamametechnologies/.github/.github/workflows/slack-notify.yml@main
 #     with:
 #       results: ${{ toJSON(needs) }}
-#     secrets: inherit
+#     secrets:
+#       SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 #
 # Modes:
 # - on-change (default): a message when the workflow breaks on a branch, and
@@ -26,7 +27,9 @@ name: Slack notify
 # GitHub-hosted runners, the cache service is not affected. A cache unused for
 # 7 days expires; the next failure then posts again.
 #
-# SLACK_BOT_TOKEN is the organization secret; `secrets: inherit` passes it.
+# SLACK_BOT_TOKEN is the organization secret. Pass it alone, as above, not with
+# `secrets: inherit`, which would hand every secret of the calling repository to
+# this workflow.
 # A failure tags the person the SLACK_MENTIONS organization variable names for
 # the repository; a fix tags nobody.
 # The channel is the SLACK_ALERTS_CHANNEL organization variable (#qa-alerts
@@ -149,7 +152,7 @@ jobs:
               print("Would post to", env("CHANNEL"), ":", message)
           elif not env("SLACK_BOT_TOKEN"):
               posted = False
-              print("::warning::SLACK_BOT_TOKEN is not available (pass `secrets: inherit`). Message: " + message)
+              print("::warning::SLACK_BOT_TOKEN is not available (pass `secrets: SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}`). Message: " + message)
           else:
               req = urllib.request.Request("https://slack.com/api/chat.postMessage",
                   data=json.dumps({"channel": env("CHANNEL"), "text": message, "unfurl_links": False}).encode(),
