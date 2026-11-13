@@ -1,0 +1,173 @@
+name: Slack notify
+
+# One Slack message per workflow run, only when it matters. Call it as the
+# last job of a workflow, after the jobs to report on:
+#
+#   notify:
+#     needs: [build, test]
+#     if: always() && github.event_name != 'pull_request'
+#     uses: edamametechnologies/.github/.github/workflows/slack-notify.yml@main
+#     with:
+#       results: ${{ toJSON(needs) }}
+#     secrets: inherit
+#
+# Modes:
+# - on-change (default): a message when the workflow breaks on a branch, and
+#   one when it is fixed; nothing while it stays green, nothing while it stays
+#   red.
+# - every-failure: a message on every failed run, never on success. For
+#   releases and deploys, where every failure needs someone.
+#
+# Never posts for pull requests (their author sees the check on GitHub), nor
+# for a run whose jobs were only cancelled or skipped.
+#
+# Whether the previous run on the branch was red travels through the Actions
+# cache: the organization's IP allow list refuses GitHub API calls from
+# GitHub-hosted runners, the cache service is not affected. A cache unused for
+# 7 days expires; the next failure then posts again.
+#
+# SLACK_BOT_TOKEN is the organization secret; `secrets: inherit` passes it.
+# A failure tags the person the SLACK_MENTIONS organization variable names for
+# the repository; a fix tags nobody.
+# The channel is the SLACK_ALERTS_CHANNEL organization variable (#qa-alerts
+# until it is set).
+
+on:
+  workflow_call:
+    inputs:
+      results:
+        description: "toJSON(needs) of the calling job: the jobs to report on"
+        type: string
+        required: true
+      mode:
+        description: "on-change (broke / fixed) or every-failure"
+        type: string
+        default: on-change
+      channel:
+        description: "Slack channel ID (default: the SLACK_ALERTS_CHANNEL organization variable)"
+        type: string
+        default: ""
+      title:
+        description: "Name shown in the message (default: the workflow's name)"
+        type: string
+        default: ""
+      dry_run:
+        description: "Print the message instead of posting it"
+        type: boolean
+        default: false
+    secrets:
+      SLACK_BOT_TOKEN:
+        required: false
+
+jobs:
+  notify:
+    name: Slack
+    if: github.event_name != 'pull_request' && github.event_name != 'pull_request_target'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Name the state of this workflow on this branch
+        id: key
+        env:
+          WORKFLOW: ${{ github.workflow }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          prefix="slack-notify-$(printf '%s-%s' "$WORKFLOW" "$BRANCH" | tr -c 'A-Za-z0-9._-' '_')-"
+          echo "prefix=$prefix" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the previous state
+        if: inputs.mode == 'on-change'
+        uses: actions/cache/restore@v4
+        with:
+          path: .slack-notify-state
+          key: ${{ steps.key.outputs.prefix }}${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ${{ steps.key.outputs.prefix }}
+
+      - name: Post if the run broke or fixed something
+        env:
+          RESULTS: ${{ inputs.results }}
+          MODE: ${{ inputs.mode }}
+          # The alerts channel is an organization variable, so changing the channel is one
+          # setting for every repository. #qa-alerts until the variable exists.
+          CHANNEL: ${{ inputs.channel || vars.SLACK_ALERTS_CHANNEL || 'C072J0U9TH7' }}
+          # Who to tag on a failure, per repository: the SLACK_MENTIONS organization
+          # variable, {"edamametechnologies/<repo>": "<Slack member ID>", ...}.
+          MENTIONS: ${{ vars.SLACK_MENTIONS }}
+          TITLE: ${{ inputs.title }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+          BRANCH: ${{ github.ref_name }}
+          WORKFLOW: ${{ github.workflow }}
+          EVENT: ${{ github.event_name }}
+          ACTOR: ${{ github.actor }}
+          SERVER: ${{ github.server_url }}
+        shell: python3 {0}
+        run: |
+          import json, os, urllib.request
+
+          env = os.environ.get
+          STATE = ".slack-notify-state"
+          needs = json.loads(env("RESULTS") or "{}")
+          failed = sorted(j for j, v in needs.items() if v.get("result") == "failure")
+          results = {v.get("result") for v in needs.values()}
+          run_url = f"{env('SERVER')}/{env('REPO')}/actions/runs/{env('RUN_ID')}"
+          where = f"*{env('REPO').split('/')[1]} · {env('TITLE') or env('WORKFLOW')}*"
+          branch = env("BRANCH")
+          try:
+              mentions = json.loads(env("MENTIONS") or "{}")
+          except ValueError:
+              print("::warning::SLACK_MENTIONS is not valid JSON; nobody is tagged.")
+              mentions = {}
+          who = mentions.get(env("REPO")) or mentions.get(env("REPO").split("/")[1]) or ""
+          tag = "".join(f"<@{u}> " for u in str(who).replace(",", " ").split())
+
+          was_red = False
+          if os.path.exists(STATE):
+              with open(STATE) as f:
+                  was_red = json.load(f).get("red", False)
+
+          message = None
+          if failed:
+              shown = ", ".join(failed[:6]) + (f" and {len(failed) - 6} more" if len(failed) > 6 else "")
+              if env("MODE") == "every-failure" or not was_red:
+                  message = f"{tag}:x: {where} failed on `{branch}` ({env('EVENT')}, {env('ACTOR')}): {shown}. <{run_url}|Run>"
+              else:
+                  print(f"Still failing ({shown}), already reported.")
+          elif results and results <= {"cancelled", "skipped"}:
+              print("Only cancelled or skipped jobs: nothing to report.")
+          elif was_red and env("MODE") != "every-failure":
+              message = f":white_check_mark: {where} is fixed on `{branch}`. <{run_url}|Run>"
+
+          posted = True
+          if not message:
+              print("Nothing to post.")
+          elif env("DRY_RUN") == "true":
+              print("Would post to", env("CHANNEL"), ":", message)
+          elif not env("SLACK_BOT_TOKEN"):
+              posted = False
+              print("::warning::SLACK_BOT_TOKEN is not available (pass `secrets: inherit`). Message: " + message)
+          else:
+              req = urllib.request.Request("https://slack.com/api/chat.postMessage",
+                  data=json.dumps({"channel": env("CHANNEL"), "text": message, "unfurl_links": False}).encode(),
+                  headers={"Authorization": f"Bearer {env('SLACK_BOT_TOKEN')}", "Content-Type": "application/json; charset=utf-8"})
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  answer = json.loads(r.read())
+              posted = bool(answer.get("ok"))
+              print("Posted:" if posted else f"::warning::Slack refused the message ({answer.get('error')}):", message)
+
+          # The state moves only on a conclusive run, and only once its message is out,
+          # so an alert that could not be posted is tried again next time.
+          if (failed or not (results <= {"cancelled", "skipped"})) and posted:
+              with open(STATE, "w") as f:
+                  json.dump({"red": bool(failed)}, f)
+
+      - name: Save the state
+        if: inputs.mode == 'on-change' && hashFiles('.slack-notify-state') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .slack-notify-state
+          key: ${{ steps.key.outputs.prefix }}${{ github.run_id }}-${{ github.run_attempt }}
