@@ -32,8 +32,11 @@ name: Slack notify
 # this workflow.
 # A failure tags the person the SLACK_MENTIONS organization variable names for
 # the repository; a fix tags nobody.
-# The channel is the SLACK_ALERTS_CHANNEL organization variable (#qa-alerts
-# until it is set).
+# The channel: a workflow listed in the SLACK_PRODUCTION_WORKFLOWS organization
+# variable (["<repo>/<workflow file>", ...]: it tests what users get) posts to
+# SLACK_ALERTS_CHANNEL with the tag; any other workflow posts to
+# SLACK_REPORTS_CHANNEL without a tag. With no list set, everything goes to
+# SLACK_ALERTS_CHANNEL.
 
 on:
   workflow_call:
@@ -94,7 +97,12 @@ jobs:
           MODE: ${{ inputs.mode }}
           # The alerts channel is an organization variable, so changing the channel is one
           # setting for every repository. #qa-alerts until the variable exists.
-          CHANNEL: ${{ inputs.channel || vars.SLACK_ALERTS_CHANNEL || 'C072J0U9TH7' }}
+          CHANNEL: ${{ inputs.channel }}
+          ALERTS_CHANNEL: ${{ vars.SLACK_ALERTS_CHANNEL || 'C072J0U9TH7' }}
+          REPORTS_CHANNEL: ${{ vars.SLACK_REPORTS_CHANNEL || 'C07127YECN4' }}
+          # The workflows whose failures are production problems (see the header).
+          PRODUCTION: ${{ vars.SLACK_PRODUCTION_WORKFLOWS }}
+          WORKFLOW_REF: ${{ github.workflow_ref }}
           # Who to tag on a failure, per repository: the SLACK_MENTIONS organization
           # variable, {"edamametechnologies/<repo>": "<Slack member ID>", ...}.
           MENTIONS: ${{ vars.SLACK_MENTIONS }}
@@ -128,6 +136,22 @@ jobs:
           who = mentions.get(env("REPO")) or mentions.get(env("REPO").split("/")[1]) or ""
           tag = "".join(f"<@{u}> " for u in str(who).replace(",", " ").split())
 
+          # owner/repo/.github/workflows/<file>@<ref> -> "<repo>/<file>"
+          ref = (env("WORKFLOW_REF") or "").split("@")[0].split("/")
+          this = f"{ref[1]}/{ref[-1]}" if len(ref) > 2 else ""
+          try:
+              production = json.loads(env("PRODUCTION") or "null")
+          except ValueError:
+              print("::warning::SLACK_PRODUCTION_WORKFLOWS is not valid JSON; posting to the alerts channel.")
+              production = None
+          if env("CHANNEL"):
+              channel = env("CHANNEL")
+          elif production is None or this in production:
+              channel = env("ALERTS_CHANNEL")
+          else:  # CI on code users don't run yet: information, nobody tagged
+              channel, tag = env("REPORTS_CHANNEL"), ""
+          print(f"{this}: {'alerts' if channel == env('ALERTS_CHANNEL') else 'reports' if channel == env('REPORTS_CHANNEL') else channel}")
+
           was_red = False
           if os.path.exists(STATE):
               with open(STATE) as f:
@@ -149,13 +173,13 @@ jobs:
           if not message:
               print("Nothing to post.")
           elif env("DRY_RUN") == "true":
-              print("Would post to", env("CHANNEL"), ":", message)
+              print("Would post to", channel, ":", message)
           elif not env("SLACK_BOT_TOKEN"):
               posted = False
               print("::warning::SLACK_BOT_TOKEN is not available (pass `secrets: SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}`). Message: " + message)
           else:
               req = urllib.request.Request("https://slack.com/api/chat.postMessage",
-                  data=json.dumps({"channel": env("CHANNEL"), "text": message, "unfurl_links": False}).encode(),
+                  data=json.dumps({"channel": channel, "text": message, "unfurl_links": False}).encode(),
                   headers={"Authorization": f"Bearer {env('SLACK_BOT_TOKEN')}", "Content-Type": "application/json; charset=utf-8"})
               with urllib.request.urlopen(req, timeout=20) as r:
                   answer = json.loads(r.read())
